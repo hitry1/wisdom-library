@@ -3916,3 +3916,517 @@ html {
         padding: 1rem;
     }
 }
+
+/* ===== 교수님 프로필 섹션 스타일 ===== */
+.professor-profile-section {
+    margin: 3rem 0;
+    padding: 2rem 0;
+}
+
+.professor-quote-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 인용구 말풍선 */
+.professor-quote-bubble {
+    flex: 1;
+    max-width: 700px;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.professor-quote-bubble:hover {
+    transform: translateY(-4px);
+}
+
+.quote-decoration {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 4rem;
+    color: rgba(255, 152, 0, 0.1);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.professor-main-quote {
+    position: relative;
+    z-index: 10;
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #333;
+    font-family: 'Noto Serif KR', serif;
+    margin-bottom: 1.5rem;
+}
+
+.quote-author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+.author-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.author-title {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+/* 말풍선 꼬리 */
+.speech-bubble-tail {
+    position: absolute;
+    top: 3rem;
+    left: -12px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+    transform: rotate(45deg);
+}
+
+/* 교수님 프로필 카드 */
+.professor-profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profile-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.decoration-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.decoration-circle.yellow {
+    width: 128px;
+    height: 128px;
+    background: #ffd54f;
+    top: -16px;
+    right: -16px;
+}
+
+.decoration-circle.orange {
+    width: 96px;
+    height: 96px;
+    background: #ffab40;
+    bottom: -16px;
+    left: -16px;
+}
+
+.professor-profile-card:hover .decoration-circle {
+    opacity: 1;
+}
+
+.profile-image-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.professor-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.profile-image-container:hover .professor-image {
+    transform: scale(1.05);
+}
+
+.status-badge {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    background: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    animation: bounce-slow 2s infinite;
+}
+
+@keyframes bounce-slow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.status-dot {
+    position: relative;
+    display: inline-flex;
+    width: 8px;
+    height: 8px;
+}
+
+.status-dot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #10b981;
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.status-dot::after {
+    content: '';
+    position: relative;
+    display: inline-flex;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+@keyframes ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.status-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.hover-tooltip {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.hover-tooltip span {
+    display: block;
+    background: #1a1a1a;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.hover-tooltip span::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background: #1a1a1a;
+}
+
+.profile-image-container:hover .hover-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.view-profile-btn {
+    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #666;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0.5rem;
+}
+
+.view-profile-btn:hover {
+    color: #ff6b35;
+}
+
+/* 모달 스타일 */
+.professor-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.professor-modal.active .modal-backdrop {
+    opacity: 1;
+}
+
+.modal-content-wrapper {
+    position: relative;
+    background: white;
+    border-radius: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 28rem;
+    overflow: hidden;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease;
+    border: 4px solid #ffedd5;
+}
+
+.professor-modal.active .modal-content-wrapper {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.modal-header-gradient {
+    background: linear-gradient(135deg, #fed7aa 0%, #fde68a 100%);
+    padding: 1.5rem;
+    position: relative;
+    height: 144px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #78350f;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.modal-profile-image-wrapper {
+    position: absolute;
+    bottom: -40px;
+}
+
+.modal-professor-image {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: #10b981;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.modal-body {
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+}
+
+.modal-professor-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+}
+
+.modal-professor-title {
+    color: #ff6b35;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.modal-intro-box {
+    background: #f9fafb;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.modal-intro-text {
+    color: #4b5563;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.modal-tags {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-tag {
+    padding: 0.5rem 0.75rem;
+    background: white;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+}
+
+.modal-info-section {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.modal-info-group {
+    margin-bottom: 1.5rem;
+}
+
+.modal-info-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.modal-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4b5563;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-info-item svg {
+    color: #ff6b35;
+    flex-shrink: 0;
+}
+
+.modal-close-button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-close-button:hover {
+    background: #333;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .professor-quote-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .professor-quote-bubble {
+        padding: 2rem 1.5rem;
+    }
+
+    .speech-bubble-tail {
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        border-left: none;
+    }
+
+    .professor-main-quote {
+        font-size: 1.25rem;
+    }
+
+    .profile-image-container {
+        width: 128px;
+        height: 128px;
+    }
+
+    .modal-content-wrapper {
+        max-width: 100%;
+    }
+
+    .modal-body {
+        padding: 3rem 1.5rem 1.5rem;
+    }
+}

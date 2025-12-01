@@ -1122,3 +1122,4 @@ window.searchManager = new SearchManager();
 
 console.log('✅ Features.js 로드 완료: 북마크, 공유, 검색 기능 활성화');
 
+

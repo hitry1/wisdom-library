@@ -20,3 +20,4 @@ Sitemap: https://confucius-nfc.example.com/sitemap.xml
 
 # Crawl delay (optional - be nice to servers)
 Crawl-delay: 1
+

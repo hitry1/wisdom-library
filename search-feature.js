@@ -610,6 +610,12 @@ class QuoteSearchManager {
             const dailyBanner = document.createElement('div');
             dailyBanner.className = 'daily-quote-banner';
             dailyBanner.innerHTML = `
+                <button class="daily-quote-close" onclick="this.closest('.daily-quote-banner').remove()" aria-label="닫기">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
                 <div class="daily-quote-content">
                     <div class="daily-quote-label">💫 오늘의 명언</div>
                     <p class="daily-quote-text">"${this.dailyQuote.text}"</p>
@@ -649,6 +655,29 @@ class QuoteSearchManager {
                 width: 90%;
                 box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
                 z-index: 10;
+            }
+
+            .daily-quote-close {
+                position: absolute;
+                top: 0.75rem;
+                right: 0.75rem;
+                background: rgba(0, 0, 0, 0.05);
+                border: none;
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                color: #666;
+            }
+
+            .daily-quote-close:hover {
+                background: rgba(0, 0, 0, 0.1);
+                color: #333;
+                transform: rotate(90deg);
             }
 
             .daily-quote-label {

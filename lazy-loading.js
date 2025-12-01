@@ -418,3 +418,4 @@ window.performanceMonitor = new PerformanceMonitor();
 
 console.log('✅ Lazy Loading & Performance 모듈 로드 완료');
 
+

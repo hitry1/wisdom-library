@@ -474,3 +474,4 @@ const log = (...args) => DEBUG && console.log(...args);
 **작성일**: 2025-11-03  
 **버전**: 1.0
 
+
