@@ -15,6 +15,7 @@ backups/
 *-backup*.html
 *-old*.html
 *-before-*.html
+*.backup
 
 # Python
 *.pyc

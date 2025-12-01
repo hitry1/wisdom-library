@@ -255,18 +255,21 @@
             <section class="section gallery-3d">
                 <div class="container">
                     <h2 class="section-title">
-                        <span data-ko="문화재 3D 렌더링" data-en="Cultural Artifacts 3D Rendering">문화재 3D 렌더링</span>
+                        <span data-ko="문화체험" data-en="Cultural Experience">문화체험</span>
                     </h2>
 
                     <div class="gallery-grid">
-                        <div class="gallery-item" data-item="analects">
+                        <div class="gallery-item" data-item="analects" onclick="openAnalectsEbook()" style="cursor: pointer;">
                             <div class="gallery-item-image">
                                 <div class="gallery-item-icon">📜</div>
                                 <span class="gallery-badge" data-ko="문헌" data-en="Text">문헌</span>
                             </div>
                             <div class="gallery-item-info">
                                 <h3 class="gallery-item-title" data-ko="논어 (論語)" data-en="The Analects">논어 (論語)</h3>
-                                <p class="gallery-item-desc" data-ko="공자와 제자들의 대화를 기록한 유교의 핵심 경전" data-en="Core Confucian text recording dialogues between Confucius and his disciples">공자와 제자들의 대화를 기록한 유교의 핵심 경전</p>
+                                <p class="gallery-item-desc" data-ko="공자의 가르침을 담은 유교 경전" data-en="Confucian classic containing Confucius's teachings">공자의 가르침을 담은 유교 경전</p>
+                                <p style="font-size: 0.9rem; color: #c9555a; margin-top: 0.5rem; font-weight: 500;">
+                                    <span data-ko="📖 전자책 보기" data-en="📖 View E-Book">📖 전자책 보기</span>
+                                </p>
                             </div>
                         </div>
 
@@ -905,18 +908,21 @@
             <section class="section gallery-3d">
                 <div class="container">
                     <h2 class="section-title">
-                        <span data-ko="문화재 3D 렌더링" data-en="Cultural Artifacts 3D Rendering">문화재 3D 렌더링</span>
+                        <span data-ko="문화체험" data-en="Cultural Experience">문화체험</span>
                     </h2>
 
                     <div class="gallery-grid">
-                        <div class="gallery-item" data-item="daodejing">
+                        <div class="gallery-item" data-item="daodejing" onclick="openLaoziEbook()" style="cursor: pointer;">
                             <div class="gallery-item-image">
-                                <div class="gallery-item-icon">📜</div>
-                                <span class="gallery-badge" data-ko="경전" data-en="Scripture">경전</span>
+                                <div class="gallery-item-icon">🌊</div>
+                                <span class="gallery-badge" data-ko="문헌" data-en="Text">문헌</span>
                             </div>
                             <div class="gallery-item-info">
                                 <h3 class="gallery-item-title" data-ko="도덕경 (道德經)" data-en="Tao Te Ching">도덕경 (道德經)</h3>
-                                <p class="gallery-item-desc" data-ko="노자의 사상을 담은 도가의 핵심 경전, 81장으로 구성" data-en="Core Taoist text containing Laozi's philosophy, consisting of 81 chapters">노자의 사상을 담은 도가의 핵심 경전, 81장으로 구성</p>
+                                <p class="gallery-item-desc" data-ko="노자의 도가 사상을 담은 경전" data-en="Taoist classic containing Laozi's philosophy">노자의 도가 사상을 담은 경전</p>
+                                <p style="font-size: 0.9rem; color: #4a90e2; margin-top: 0.5rem; font-weight: 500;">
+                                    <span data-ko="📖 전자책 보기" data-en="📖 View E-Book">📖 전자책 보기</span>
+                                </p>
                             </div>
                         </div>
 
@@ -1436,10 +1442,24 @@
             <section class="section gallery-3d">
                 <div class="container">
                     <h2 class="section-title">
-                        <span data-ko="문화재 3D 렌더링" data-en="Cultural Artifacts 3D Rendering">문화재 3D 렌더링</span>
+                        <span data-ko="문화체험" data-en="Cultural Experience">문화체험</span>
                     </h2>
 
                     <div class="gallery-grid">
+                        <div class="gallery-item" data-item="dhammapada" onclick="openBuddhaEbook()" style="cursor: pointer;">
+                            <div class="gallery-item-image">
+                                <div class="gallery-item-icon">☸️</div>
+                                <span class="gallery-badge" data-ko="문헌" data-en="Text">문헌</span>
+                            </div>
+                            <div class="gallery-item-info">
+                                <h3 class="gallery-item-title" data-ko="법구경 (法句經)" data-en="Dhammapada">법구경 (法句經)</h3>
+                                <p class="gallery-item-desc" data-ko="부처님의 가르침을 담은 불교 경전" data-en="Buddhist scripture containing Buddha's teachings">부처님의 가르침을 담은 불교 경전</p>
+                                <p style="font-size: 0.9rem; color: #f39c12; margin-top: 0.5rem; font-weight: 500;">
+                                    <span data-ko="📖 전자책 보기" data-en="📖 View E-Book">📖 전자책 보기</span>
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="gallery-item" data-item="tripitaka">
                             <div class="gallery-item-image">
                                 <div class="gallery-item-icon">📚</div>
@@ -2816,7 +2836,7 @@
     <div id="professorModal" class="professor-modal">
         <div class="modal-backdrop" onclick="closeProfessorModal()"></div>
         <div class="modal-content-wrapper">
-            <!-- 모달 헤더 -->
+            <!-- 모달 헤더 (명함 스타일) -->
             <div class="modal-header-gradient">
                 <button onclick="closeProfessorModal()" class="modal-close-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2828,16 +2848,18 @@
                     <img src="images/professor-kim-deoksam.jpg" alt="김덕삼 교수" class="modal-professor-image">
                     <div class="online-indicator"></div>
                 </div>
+                <div class="modal-header-text">
+                    <h2 class="modal-professor-name">
+                        <span data-ko="김덕삼 교수" data-en="Prof. Kim Deok-sam">김덕삼 교수</span>
+                    </h2>
+                    <p class="modal-professor-title">
+                        <span data-ko="대진대학교 철학과" data-en="Dept. of Philosophy, Daejin University">대진대학교 철학과</span>
+                    </p>
+                </div>
             </div>
 
-            <!-- 모달 바디 -->
+            <!-- 모달 바디 (스크롤 가능) -->
             <div class="modal-body">
-                <h2 class="modal-professor-name">
-                    <span data-ko="김덕삼 교수" data-en="Prof. Kim Deok-sam">김덕삼 교수</span>
-                </h2>
-                <p class="modal-professor-title">
-                    <span data-ko="대진대학교 철학과" data-en="Dept. of Philosophy, Daejin University">대진대학교 철학과</span>
-                </p>
 
                 <div class="modal-intro-box">
                     <p class="modal-intro-text">
@@ -3027,6 +3049,217 @@
             }
         });
     </script>
+
+    <!-- 논어 E-Book 모달 -->
+    <div id="analectsEbook" class="ebook-modal">
+        <div class="ebook-backdrop" onclick="closeAnalectsEbook()"></div>
+        <div class="ebook-container">
+            <!-- 책 닫기 버튼 -->
+            <button class="ebook-close-btn" onclick="closeAnalectsEbook()" aria-label="닫기">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- 언어 전환 버튼 -->
+            <div class="ebook-language-toggle">
+                <button class="lang-btn active" data-lang="ko" onclick="switchEbookLanguage('ko')">
+                    <span>한글</span>
+                </button>
+                <button class="lang-btn" data-lang="zh" onclick="switchEbookLanguage('zh')">
+                    <span>漢文</span>
+                </button>
+                <button class="lang-btn" data-lang="en" onclick="switchEbookLanguage('en')">
+                    <span>EN</span>
+                </button>
+            </div>
+
+            <!-- 책 본문 -->
+            <div class="ebook-book">
+                <!-- 왼쪽 페이지 -->
+                <div class="ebook-page ebook-page-left">
+                    <div class="page-content" id="ebookPageLeft">
+                        <!-- 동적으로 채워짐 -->
+                    </div>
+                    <div class="page-number" id="pageNumLeft"></div>
+                </div>
+
+                <!-- 책 중앙 바인딩 -->
+                <div class="ebook-binding"></div>
+
+                <!-- 오른쪽 페이지 -->
+                <div class="ebook-page ebook-page-right">
+                    <div class="page-content" id="ebookPageRight">
+                        <!-- 동적으로 채워짐 -->
+                    </div>
+                    <div class="page-number" id="pageNumRight"></div>
+                </div>
+            </div>
+
+            <!-- 페이지 네비게이션 -->
+            <div class="ebook-navigation">
+                <button class="nav-btn nav-prev" onclick="ebookPrevPage()" id="ebookPrevBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    <span data-ko="이전" data-en="Prev">이전</span>
+                </button>
+                <div class="page-indicator">
+                    <span id="currentPageNum">1</span> / <span id="totalPageNum">20</span>
+                </div>
+                <button class="nav-btn nav-next" onclick="ebookNextPage()" id="ebookNextBtn">
+                    <span data-ko="다음" data-en="Next">다음</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 용어 해설 팝업 -->
+    <div id="termTooltip" class="term-tooltip" style="display: none;">
+        <div class="tooltip-content">
+            <h4 class="tooltip-title"></h4>
+            <p class="tooltip-text"></p>
+        </div>
+    </div>
+
+    <!-- 노자 도덕경 E-Book 모달 -->
+    <div id="laoziEbook" class="ebook-modal">
+        <div class="ebook-backdrop" onclick="closeLaoziEbook()"></div>
+        <div class="ebook-container">
+            <button class="ebook-close-btn" onclick="closeLaoziEbook()" aria-label="닫기">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="ebook-language-toggle">
+                <button class="lang-btn active" data-lang="ko" onclick="switchLaoziLanguage('ko')">
+                    <span>한글</span>
+                </button>
+                <button class="lang-btn" data-lang="zh" onclick="switchLaoziLanguage('zh')">
+                    <span>漢文</span>
+                </button>
+                <button class="lang-btn" data-lang="en" onclick="switchLaoziLanguage('en')">
+                    <span>EN</span>
+                </button>
+            </div>
+
+            <div class="ebook-book">
+                <div class="ebook-page ebook-page-left">
+                    <div class="page-content" id="laoziPageLeft"></div>
+                    <div class="page-number" id="laoziPageNumLeft"></div>
+                </div>
+
+                <div class="ebook-binding"></div>
+
+                <div class="ebook-page ebook-page-right">
+                    <div class="page-content" id="laoziPageRight"></div>
+                    <div class="page-number" id="laoziPageNumRight"></div>
+                </div>
+            </div>
+
+            <div class="ebook-navigation">
+                <button class="nav-btn nav-prev" onclick="laoziPrevPage()" id="laoziPrevBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    <span data-ko="이전" data-en="Prev">이전</span>
+                </button>
+                <div class="page-indicator">
+                    <span id="laoziCurrentPageNum">1</span> / <span id="laoziTotalPageNum">25</span>
+                </div>
+                <button class="nav-btn nav-next" onclick="laoziNextPage()" id="laoziNextBtn">
+                    <span data-ko="다음" data-en="Next">다음</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 노자 용어 해설 팝업 -->
+    <div id="laoziTermTooltip" class="term-tooltip" style="display: none;">
+        <div class="tooltip-content">
+            <h4 class="tooltip-title"></h4>
+            <p class="tooltip-text"></p>
+        </div>
+    </div>
+
+    <!-- 석가모니 법구경 E-Book 모달 -->
+    <div id="buddhaEbook" class="ebook-modal">
+        <div class="ebook-backdrop" onclick="closeBuddhaEbook()"></div>
+        <div class="ebook-container">
+            <button class="ebook-close-btn" onclick="closeBuddhaEbook()" aria-label="닫기">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="ebook-language-toggle">
+                <button class="lang-btn active" data-lang="ko" onclick="switchBuddhaLanguage('ko')">
+                    <span>한글</span>
+                </button>
+                <button class="lang-btn" data-lang="zh" onclick="switchBuddhaLanguage('zh')">
+                    <span>漢文</span>
+                </button>
+                <button class="lang-btn" data-lang="en" onclick="switchBuddhaLanguage('en')">
+                    <span>EN</span>
+                </button>
+            </div>
+
+            <div class="ebook-book">
+                <div class="ebook-page ebook-page-left">
+                    <div class="page-content" id="buddhaPageLeft"></div>
+                    <div class="page-number" id="buddhaPageNumLeft"></div>
+                </div>
+
+                <div class="ebook-binding"></div>
+
+                <div class="ebook-page ebook-page-right">
+                    <div class="page-content" id="buddhaPageRight"></div>
+                    <div class="page-number" id="buddhaPageNumRight"></div>
+                </div>
+            </div>
+
+            <div class="ebook-navigation">
+                <button class="nav-btn nav-prev" onclick="buddhaPrevPage()" id="buddhaPrevBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    <span data-ko="이전" data-en="Prev">이전</span>
+                </button>
+                <div class="page-indicator">
+                    <span id="buddhaCurrentPageNum">1</span> / <span id="buddhaTotalPageNum">26</span>
+                </div>
+                <button class="nav-btn nav-next" onclick="buddhaNextPage()" id="buddhaNextBtn">
+                    <span data-ko="다음" data-en="Next">다음</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 석가모니 용어 해설 팝업 -->
+    <div id="buddhaTermTooltip" class="term-tooltip" style="display: none;">
+        <div class="tooltip-content">
+            <h4 class="tooltip-title"></h4>
+            <p class="tooltip-text"></p>
+        </div>
+    </div>
+
+    <!-- E-Book JavaScript -->
+    <script src="analects-ebook.js"></script>
+    <script src="laozi-ebook.js"></script>
+    <script src="buddha-ebook.js"></script>
 
 </body>
 </html>
