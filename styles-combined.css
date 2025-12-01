@@ -3722,3 +3722,197 @@ html {
         margin-bottom: 0.75rem;
     }
 }
+
+/* ===== 김덕삼 교수 섹션 스타일 ===== */
+.kim-duksam-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border: 2px solid #dee2e6;
+    position: relative;
+    overflow: hidden;
+}
+
+.kim-duksam-section::before {
+    content: '📚';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 4rem;
+    opacity: 0.1;
+}
+
+.kim-duksam-section .ref-category-title {
+    color: #2c5f6f;
+    border-bottom: 3px solid #7FCDCD;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.scholar-profile {
+    background: white;
+    border-left: 4px solid #2c5f6f;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.scholar-info {
+    line-height: 1.8;
+    color: #495057;
+    margin: 0;
+}
+
+.scholar-info strong {
+    color: #2c5f6f;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.citation-note {
+    background: #f1f8ff;
+    border-left: 3px solid #7FCDCD;
+    padding: 1rem;
+    margin-top: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #495057;
+}
+
+.citation-note::before {
+    content: '';
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.citation-impact {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.citation-impact::before {
+    content: '💡';
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.citation-impact p {
+    margin: 0;
+    line-height: 1.8;
+    color: #495057;
+    font-weight: 500;
+}
+
+.kim-duksam-section .reference-list li {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.kim-duksam-section .reference-list li:hover {
+    box-shadow: 0 4px 16px rgba(44, 95, 111, 0.15);
+    transform: translateY(-2px);
+}
+
+.kim-duksam-section .reference-list li strong {
+    color: #2c5f6f;
+}
+
+.kim-duksam-section .reference-list li em {
+    color: #495057;
+    font-style: italic;
+}
+
+/* 다크 모드 지원 */
+.dark-mode .kim-duksam-section {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-color: #3a3a3a;
+}
+
+.dark-mode .scholar-profile {
+    background: #2a2a2a;
+    border-left-color: #7FCDCD;
+}
+
+.dark-mode .scholar-info {
+    color: #e0e0e0;
+}
+
+.dark-mode .scholar-info strong {
+    color: #7FCDCD;
+}
+
+.dark-mode .citation-note {
+    background: #1a3d4d;
+    border-left-color: #7FCDCD;
+    color: #e0e0e0;
+}
+
+.dark-mode .citation-impact {
+    background: linear-gradient(135deg, #3a3a2a 0%, #2a2a1a 100%);
+    border-color: #d4af37;
+}
+
+.dark-mode .citation-impact p {
+    color: #e0e0e0;
+}
+
+.dark-mode .kim-duksam-section .reference-list li {
+    background: #2a2a2a;
+}
+
+.dark-mode .kim-duksam-section .reference-list li strong {
+    color: #7FCDCD;
+}
+
+.dark-mode .kim-duksam-section .reference-list li em {
+    color: #e0e0e0;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .kim-duksam-section {
+        padding: 1.5rem;
+    }
+
+    .kim-duksam-section::before {
+        font-size: 3rem;
+        top: 15px;
+        right: 15px;
+    }
+
+    .scholar-profile {
+        padding: 1rem;
+    }
+
+    .citation-note {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .citation-impact {
+        padding: 1rem;
+    }
+
+    .kim-duksam-section .reference-list li {
+        padding: 1rem;
+    }
+}
