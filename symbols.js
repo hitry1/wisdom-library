@@ -1,554 +1,557 @@
-// ===== 동양 철학 상징물 시각화 =====
+// ===== 동양 철학 상징물 모달 =====
 
-// 공자 - 육예(六藝) 원형 다이어그램
-class SixArtsCircle {
-    constructor(containerId) {
-        this.container = document.getElementById(containerId);
-        this.arts = [
-            { name: '禮', nameKo: '예', desc: '예절', color: '#8b0000', icon: '🙏' },
-            { name: '樂', nameKo: '악', desc: '음악', color: '#a52a2a', icon: '🎵' },
-            { name: '射', nameKo: '사', desc: '활쏘기', color: '#b22222', icon: '🏹' },
-            { name: '御', nameKo: '어', desc: '말타기', color: '#c41e3a', icon: '🐎' },
-            { name: '書', nameKo: '서', desc: '글쓰기', color: '#d2042d', icon: '✍️' },
-            { name: '數', nameKo: '수', desc: '산수', color: '#dc143c', icon: '🔢' }
-        ];
-        this.currentActive = -1;
-        this.init();
-    }
+// 육예 (Six Arts) 모달
+function openSixArtsModal() {
+    const modal = createSymbolModal(
+        '六藝 (육예) - 군자의 여섯 가지 기예',
+        'Six Arts - Six Skills of a Gentleman',
+        '#8b0000'
+    );
 
-    init() {
-        this.createCircle();
-        this.startAnimation();
-    }
+    const content = document.createElement('div');
+    content.style.cssText = 'text-align: center; padding: 2rem 0;';
 
-    createCircle() {
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('width', '400');
-        svg.setAttribute('height', '400');
-        svg.setAttribute('viewBox', '0 0 400 400');
-        svg.style.cssText = 'width: 100%; height: auto; max-width: 400px;';
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '400');
+    svg.setAttribute('height', '400');
+    svg.setAttribute('viewBox', '0 0 400 400');
+    svg.style.cssText = 'width: 100%; height: auto; max-width: 400px; margin: 0 auto;';
 
-        // 중심 원
-        const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        centerCircle.setAttribute('cx', '200');
-        centerCircle.setAttribute('cy', '200');
-        centerCircle.setAttribute('r', '50');
-        centerCircle.setAttribute('fill', '#8b0000');
-        centerCircle.setAttribute('opacity', '0.2');
-        svg.appendChild(centerCircle);
+    const arts = [
+        { name: '禮', nameKo: '예', desc: '예절', color: '#8b0000', icon: '🙏' },
+        { name: '樂', nameKo: '악', desc: '음악', color: '#a52a2a', icon: '🎵' },
+        { name: '射', nameKo: '사', desc: '활쏘기', color: '#b22222', icon: '🏹' },
+        { name: '御', nameKo: '어', desc: '말타기', color: '#c41e3a', icon: '🐎' },
+        { name: '書', nameKo: '서', desc: '글쓰기', color: '#d2042d', icon: '✍️' },
+        { name: '數', nameKo: '수', desc: '산수', color: '#dc143c', icon: '🔢' }
+    ];
 
-        // 중심 텍스트
-        const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        centerText.setAttribute('x', '200');
-        centerText.setAttribute('y', '210');
-        centerText.setAttribute('text-anchor', 'middle');
-        centerText.setAttribute('fill', '#8b0000');
-        centerText.setAttribute('font-size', '32');
-        centerText.setAttribute('font-weight', 'bold');
-        centerText.textContent = '六藝';
-        svg.appendChild(centerText);
+    // 중심 원
+    const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    centerCircle.setAttribute('cx', '200');
+    centerCircle.setAttribute('cy', '200');
+    centerCircle.setAttribute('r', '50');
+    centerCircle.setAttribute('fill', '#8b0000');
+    centerCircle.setAttribute('opacity', '0.2');
+    svg.appendChild(centerCircle);
 
-        // 6개의 육예 요소
-        this.arts.forEach((art, index) => {
-            const angle = (index * 60 - 90) * Math.PI / 180;
-            const radius = 120;
-            const x = 200 + radius * Math.cos(angle);
-            const y = 200 + radius * Math.sin(angle);
+    // 중심 텍스트
+    const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerText.setAttribute('x', '200');
+    centerText.setAttribute('y', '210');
+    centerText.setAttribute('text-anchor', 'middle');
+    centerText.setAttribute('fill', '#8b0000');
+    centerText.setAttribute('font-size', '32');
+    centerText.setAttribute('font-weight', 'bold');
+    centerText.textContent = '六藝';
+    svg.appendChild(centerText);
 
-            // 연결선
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', '200');
-            line.setAttribute('y1', '200');
-            line.setAttribute('x2', x);
-            line.setAttribute('y2', y);
-            line.setAttribute('stroke', art.color);
-            line.setAttribute('stroke-width', '2');
-            line.setAttribute('opacity', '0.3');
-            line.classList.add(`six-arts-line-${index}`);
-            svg.appendChild(line);
+    // 6개의 육예 요소
+    arts.forEach((art, index) => {
+        const angle = (index * 60 - 90) * Math.PI / 180;
+        const radius = 120;
+        const x = 200 + radius * Math.cos(angle);
+        const y = 200 + radius * Math.sin(angle);
 
-            // 외부 원
-            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            circle.setAttribute('cx', x);
-            circle.setAttribute('cy', y);
-            circle.setAttribute('r', '40');
-            circle.setAttribute('fill', art.color);
-            circle.setAttribute('opacity', '0.8');
-            circle.classList.add(`six-arts-circle-${index}`);
-            circle.style.cursor = 'pointer';
-            circle.style.transition = 'all 0.3s ease';
-
-            circle.addEventListener('mouseenter', () => this.activateArt(index));
-            circle.addEventListener('mouseleave', () => this.deactivateArt(index));
-
-            svg.appendChild(circle);
-
-            // 한자 텍스트
-            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', x);
-            text.setAttribute('y', y + 8);
-            text.setAttribute('text-anchor', 'middle');
-            text.setAttribute('fill', 'white');
-            text.setAttribute('font-size', '28');
-            text.setAttribute('font-weight', 'bold');
-            text.textContent = art.name;
-            text.style.pointerEvents = 'none';
-            svg.appendChild(text);
-        });
-
-        this.container.appendChild(svg);
-
-        // 설명 영역
-        const descBox = document.createElement('div');
-        descBox.id = 'six-arts-desc';
-        descBox.style.cssText = `
-            margin-top: 2rem;
-            text-align: center;
-            min-height: 80px;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.05) 0%, rgba(139, 0, 0, 0.1) 100%);
-            border-radius: 10px;
-            border: 2px solid rgba(139, 0, 0, 0.2);
-        `;
-        descBox.innerHTML = '<p style="color: #666;">육예(六藝) 위에 마우스를 올려보세요</p>';
-        this.container.appendChild(descBox);
-    }
-
-    activateArt(index) {
-        this.currentActive = index;
-        const art = this.arts[index];
-
-        // 원 확대
-        const circle = this.container.querySelector(`.six-arts-circle-${index}`);
-        circle.setAttribute('r', '50');
-        circle.setAttribute('opacity', '1');
-
-        // 선 강조
-        const line = this.container.querySelector(`.six-arts-line-${index}`);
-        line.setAttribute('stroke-width', '4');
-        line.setAttribute('opacity', '0.8');
-
-        // 설명 업데이트
-        const descBox = document.getElementById('six-arts-desc');
-        descBox.innerHTML = `
-            <div style="font-size: 3rem; margin-bottom: 0.5rem;">${art.icon}</div>
-            <h3 style="color: ${art.color}; margin: 0.5rem 0; font-size: 1.5rem;">
-                ${art.name} (${art.nameKo})
-            </h3>
-            <p style="color: #666; margin: 0;">${art.desc}</p>
-        `;
-    }
-
-    deactivateArt(index) {
-        this.currentActive = -1;
-
-        const circle = this.container.querySelector(`.six-arts-circle-${index}`);
-        circle.setAttribute('r', '40');
-        circle.setAttribute('opacity', '0.8');
-
-        const line = this.container.querySelector(`.six-arts-line-${index}`);
+        // 연결선
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', '200');
+        line.setAttribute('y1', '200');
+        line.setAttribute('x2', x);
+        line.setAttribute('y2', y);
+        line.setAttribute('stroke', art.color);
         line.setAttribute('stroke-width', '2');
         line.setAttribute('opacity', '0.3');
+        svg.appendChild(line);
 
-        const descBox = document.getElementById('six-arts-desc');
-        descBox.innerHTML = '<p style="color: #666;">육예(六藝) 위에 마우스를 올려보세요</p>';
-    }
+        // 원
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', '40');
+        circle.setAttribute('fill', 'white');
+        circle.setAttribute('stroke', art.color);
+        circle.setAttribute('stroke-width', '3');
+        circle.style.cursor = 'pointer';
+        circle.style.transition = 'all 0.3s ease';
 
-    startAnimation() {
-        // 회전 애니메이션
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rotateArts {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-}
-
-// 노자 - 태극도 + 흐르는 물
-class TaoSymbols {
-    constructor(containerId) {
-        this.container = document.getElementById(containerId);
-        this.init();
-    }
-
-    init() {
-        this.createTaiChi();
-        this.createWaterFlow();
-    }
-
-    createTaiChi() {
-        const taichiDiv = document.createElement('div');
-        taichiDiv.style.cssText = `
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 2rem;
-            position: relative;
-            animation: rotateTaiChi 20s linear infinite;
-        `;
-
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('width', '300');
-        svg.setAttribute('height', '300');
-        svg.setAttribute('viewBox', '0 0 300 300');
-
-        // 외곽 원
-        const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        outerCircle.setAttribute('cx', '150');
-        outerCircle.setAttribute('cy', '150');
-        outerCircle.setAttribute('r', '148');
-        outerCircle.setAttribute('fill', 'none');
-        outerCircle.setAttribute('stroke', '#2563eb');
-        outerCircle.setAttribute('stroke-width', '4');
-        svg.appendChild(outerCircle);
-
-        // 태극 패턴
-        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-
-        // 그라디언트
-        const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-        gradient.setAttribute('id', 'taichiGradient');
-        gradient.setAttribute('x1', '0%');
-        gradient.setAttribute('y1', '0%');
-        gradient.setAttribute('x2', '100%');
-        gradient.setAttribute('y2', '100%');
-
-        const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-        stop1.setAttribute('offset', '0%');
-        stop1.setAttribute('stop-color', '#1e40af');
-
-        const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-        stop2.setAttribute('offset', '100%');
-        stop2.setAttribute('stop-color', '#60a5fa');
-
-        gradient.appendChild(stop1);
-        gradient.appendChild(stop2);
-        defs.appendChild(gradient);
-        svg.appendChild(defs);
-
-        // 음 (검은색 부분)
-        const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path1.setAttribute('d', 'M150,150 L150,2 A148,148 0 0,1 150,298 A74,74 0 0,0 150,150 A74,74 0 0,1 150,150 z');
-        path1.setAttribute('fill', '#1e3a8a');
-        svg.appendChild(path1);
-
-        // 양 (흰색 부분)
-        const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path2.setAttribute('d', 'M150,150 L150,2 A148,148 0 0,0 150,298 A74,74 0 0,1 150,150 A74,74 0 0,0 150,150 z');
-        path2.setAttribute('fill', 'url(#taichiGradient)');
-        svg.appendChild(path2);
-
-        // 작은 원들
-        const smallCircle1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        smallCircle1.setAttribute('cx', '150');
-        smallCircle1.setAttribute('cy', '76');
-        smallCircle1.setAttribute('r', '20');
-        smallCircle1.setAttribute('fill', '#60a5fa');
-        svg.appendChild(smallCircle1);
-
-        const smallCircle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        smallCircle2.setAttribute('cx', '150');
-        smallCircle2.setAttribute('cy', '224');
-        smallCircle2.setAttribute('r', '20');
-        smallCircle2.setAttribute('fill', '#1e3a8a');
-        svg.appendChild(smallCircle2);
-
-        taichiDiv.appendChild(svg);
-        this.container.appendChild(taichiDiv);
-
-        // 태극 설명
-        const desc = document.createElement('div');
-        desc.style.cssText = `
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.1) 100%);
-            border-radius: 10px;
-        `;
-        desc.innerHTML = `
-            <h3 style="color: #2563eb; margin: 0.5rem 0;">太極圖 (태극도)</h3>
-            <p style="color: #666; margin: 0;">음양의 조화와 도의 순환</p>
-        `;
-        this.container.appendChild(desc);
-
-        // 회전 애니메이션
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rotateTaiChi {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    createWaterFlow() {
-        const canvas = document.createElement('canvas');
-        canvas.width = 400;
-        canvas.height = 200;
-        canvas.style.cssText = 'width: 100%; max-width: 400px; border-radius: 10px;';
-        this.container.appendChild(canvas);
-
-        const ctx = canvas.getContext('2d');
-        const particles = [];
-        const particleCount = 50;
-
-        // 파티클 생성
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 3 + 1,
-                speed: Math.random() * 2 + 0.5,
-                opacity: Math.random() * 0.5 + 0.3
-            });
-        }
-
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // 배경 그라디언트
-            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-            gradient.addColorStop(0, 'rgba(37, 99, 235, 0.1)');
-            gradient.addColorStop(1, 'rgba(96, 165, 250, 0.2)');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // 파티클 그리기 및 이동
-            particles.forEach(particle => {
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(37, 99, 235, ${particle.opacity})`;
-                ctx.fill();
-
-                // 물결 효과
-                particle.x += particle.speed;
-                particle.y += Math.sin(particle.x / 30) * 0.5;
-
-                // 화면 밖으로 나가면 리셋
-                if (particle.x > canvas.width) {
-                    particle.x = -10;
-                    particle.y = Math.random() * canvas.height;
-                }
-            });
-
-            requestAnimationFrame(animate);
-        };
-
-        animate();
-
-        // 물 설명
-        const waterDesc = document.createElement('div');
-        waterDesc.style.cssText = `
-            text-align: center;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.1) 100%);
-            border-radius: 10px;
-        `;
-        waterDesc.innerHTML = `
-            <h3 style="color: #2563eb; margin: 0.5rem 0;">上善若水 (상선약수)</h3>
-            <p style="color: #666; margin: 0;">최상의 선은 물과 같다</p>
-        `;
-        this.container.appendChild(waterDesc);
-    }
-}
-
-// 석가모니 - 법륜(팔정도) + 연꽃
-class BuddhistSymbols {
-    constructor(containerId) {
-        this.container = document.getElementById(containerId);
-        this.init();
-    }
-
-    init() {
-        this.createDharmaWheel();
-        this.createLotus();
-    }
-
-    createDharmaWheel() {
-        const wheelDiv = document.createElement('div');
-        wheelDiv.style.cssText = `
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 2rem;
-            position: relative;
-            animation: rotateDharmaWheel 30s linear infinite;
-        `;
-
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('width', '300');
-        svg.setAttribute('height', '300');
-        svg.setAttribute('viewBox', '0 0 300 300');
-
-        // 외곽 원
-        const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        outerCircle.setAttribute('cx', '150');
-        outerCircle.setAttribute('cy', '150');
-        outerCircle.setAttribute('r', '140');
-        outerCircle.setAttribute('fill', 'none');
-        outerCircle.setAttribute('stroke', '#d97706');
-        outerCircle.setAttribute('stroke-width', '6');
-        svg.appendChild(outerCircle);
-
-        // 중심 원
-        const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        centerCircle.setAttribute('cx', '150');
-        centerCircle.setAttribute('cy', '150');
-        centerCircle.setAttribute('r', '30');
-        centerCircle.setAttribute('fill', '#d97706');
-        svg.appendChild(centerCircle);
-
-        // 8개의 바퀴살 (팔정도)
-        const eightfoldPath = [
-            '正見', '正思', '正語', '正業', '正命', '正精進', '正念', '正定'
-        ];
-
-        for (let i = 0; i < 8; i++) {
-            const angle = (i * 45 - 90) * Math.PI / 180;
-            const x1 = 150 + 30 * Math.cos(angle);
-            const y1 = 150 + 30 * Math.sin(angle);
-            const x2 = 150 + 140 * Math.cos(angle);
-            const y2 = 150 + 140 * Math.sin(angle);
-
-            // 바퀴살
-            const spoke = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            spoke.setAttribute('x1', x1);
-            spoke.setAttribute('y1', y1);
-            spoke.setAttribute('x2', x2);
-            spoke.setAttribute('y2', y2);
-            spoke.setAttribute('stroke', '#d97706');
-            spoke.setAttribute('stroke-width', '4');
-            svg.appendChild(spoke);
-
-            // 팔정도 텍스트
-            const textX = 150 + 160 * Math.cos(angle);
-            const textY = 150 + 160 * Math.sin(angle);
-
-            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', textX);
-            text.setAttribute('y', textY);
-            text.setAttribute('text-anchor', 'middle');
-            text.setAttribute('dominant-baseline', 'middle');
-            text.setAttribute('fill', '#d97706');
-            text.setAttribute('font-size', '16');
-            text.setAttribute('font-weight', 'bold');
-            text.textContent = eightfoldPath[i];
-            svg.appendChild(text);
-        }
-
-        wheelDiv.appendChild(svg);
-        this.container.appendChild(wheelDiv);
-
-        // 법륜 설명
-        const desc = document.createElement('div');
-        desc.style.cssText = `
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(217, 119, 6, 0.05) 0%, rgba(217, 119, 6, 0.1) 100%);
-            border-radius: 10px;
-        `;
-        desc.innerHTML = `
-            <h3 style="color: #d97706; margin: 0.5rem 0;">法輪 (법륜) - 八正道</h3>
-            <p style="color: #666; margin: 0;">바른 길로 가는 여덟 가지 방법</p>
-        `;
-        this.container.appendChild(desc);
-
-        // 회전 애니메이션
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rotateDharmaWheel {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    createLotus() {
-        const lotusDiv = document.createElement('div');
-        lotusDiv.style.cssText = `
-            width: 300px;
-            height: 200px;
-            margin: 0 auto;
-            position: relative;
-            perspective: 1000px;
-        `;
-
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('width', '300');
-        svg.setAttribute('height', '200');
-        svg.setAttribute('viewBox', '0 0 300 200');
-
-        // 연꽃 꽃잎들
-        const petals = [
-            { x: 150, y: 100, rotate: 0, scale: 1 },
-            { x: 150, y: 100, rotate: 45, scale: 0.9 },
-            { x: 150, y: 100, rotate: 90, scale: 0.95 },
-            { x: 150, y: 100, rotate: 135, scale: 0.85 },
-            { x: 150, y: 100, rotate: 180, scale: 1 },
-            { x: 150, y: 100, rotate: 225, scale: 0.9 },
-            { x: 150, y: 100, rotate: 270, scale: 0.95 },
-            { x: 150, y: 100, rotate: 315, scale: 0.85 }
-        ];
-
-        petals.forEach((petal, index) => {
-            const petalGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            petalGroup.setAttribute('transform', `rotate(${petal.rotate} ${petal.x} ${petal.y})`);
-            petalGroup.style.animation = `bloomPetal 3s ease-in-out ${index * 0.1}s infinite alternate`;
-
-            const petalPath = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
-            petalPath.setAttribute('cx', petal.x);
-            petalPath.setAttribute('cy', petal.y - 30);
-            petalPath.setAttribute('rx', 20 * petal.scale);
-            petalPath.setAttribute('ry', 40 * petal.scale);
-            petalPath.setAttribute('fill', `rgba(217, 119, 6, ${0.6 + index * 0.05})`);
-            petalPath.setAttribute('stroke', '#d97706');
-            petalPath.setAttribute('stroke-width', '2');
-
-            petalGroup.appendChild(petalPath);
-            svg.appendChild(petalGroup);
+        // 호버 효과
+        circle.addEventListener('mouseenter', () => {
+            circle.setAttribute('r', '45');
+            circle.setAttribute('fill', art.color);
+            circle.setAttribute('fill-opacity', '0.1');
+            line.setAttribute('stroke-width', '4');
+            line.setAttribute('opacity', '0.8');
         });
 
-        // 연꽃 중심
-        const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        center.setAttribute('cx', '150');
-        center.setAttribute('cy', '100');
-        center.setAttribute('r', '15');
-        center.setAttribute('fill', '#fbbf24');
-        svg.appendChild(center);
+        circle.addEventListener('mouseleave', () => {
+            circle.setAttribute('r', '40');
+            circle.setAttribute('fill', 'white');
+            line.setAttribute('stroke-width', '2');
+            line.setAttribute('opacity', '0.3');
+        });
 
-        lotusDiv.appendChild(svg);
-        this.container.appendChild(lotusDiv);
+        svg.appendChild(circle);
 
-        // 연꽃 설명
-        const lotusDesc = document.createElement('div');
-        lotusDesc.style.cssText = `
-            text-align: center;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(217, 119, 6, 0.05) 0%, rgba(217, 119, 6, 0.1) 100%);
-            border-radius: 10px;
-        `;
-        lotusDesc.innerHTML = `
-            <h3 style="color: #d97706; margin: 0.5rem 0;">蓮花 (연화)</h3>
-            <p style="color: #666; margin: 0;">진흙에서 피어나 깨끗함을 상징</p>
-        `;
-        this.container.appendChild(lotusDesc);
+        // 한자 텍스트
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', x);
+        text.setAttribute('y', y + 8);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('fill', art.color);
+        text.setAttribute('font-size', '28');
+        text.setAttribute('font-weight', 'bold');
+        text.textContent = art.name;
+        text.style.pointerEvents = 'none';
+        svg.appendChild(text);
+    });
 
-        // 꽃잎 애니메이션
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes bloomPetal {
-                from { transform: scale(1); opacity: 0.8; }
-                to { transform: scale(1.1); opacity: 1; }
-            }
+    content.appendChild(svg);
+
+    // 설명 추가
+    const description = document.createElement('div');
+    description.style.cssText = 'margin-top: 2rem; padding: 0 1rem;';
+    const descGrid = document.createElement('div');
+    descGrid.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;';
+
+    arts.forEach(art => {
+        const card = document.createElement('div');
+        card.style.cssText = `padding: 1rem; background: ${art.color}10; border-left: 3px solid ${art.color}; border-radius: 8px;`;
+        card.innerHTML = `
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">${art.icon}</div>
+            <div style="font-size: 1.2rem; font-weight: 600; color: ${art.color};">${art.name} (${art.nameKo})</div>
+            <div style="font-size: 0.9rem; color: #666; margin-top: 0.25rem;">${art.desc}</div>
         `;
-        document.head.appendChild(style);
-    }
+        descGrid.appendChild(card);
+    });
+
+    description.appendChild(descGrid);
+    content.appendChild(description);
+
+    modal.querySelector('.symbol-modal-body').appendChild(content);
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('show'), 10);
 }
 
-console.log('✅ Symbols.js 로드 완료: 동양 철학 상징물 시각화');
+// 도의 상징 모달
+function openTaoSymbolsModal() {
+    const modal = createSymbolModal(
+        '道의 상징 - 태극과 물의 흐름',
+        'Symbols of Tao - Yin Yang and Flowing Water',
+        '#2563eb'
+    );
+
+    const content = document.createElement('div');
+    content.style.cssText = 'padding: 2rem 0;';
+
+    // 태극 섹션
+    const taichiSection = document.createElement('div');
+    taichiSection.style.cssText = 'text-align: center; margin-bottom: 3rem;';
+
+    const taichiTitle = document.createElement('h3');
+    taichiTitle.textContent = '☯️ 태극 (太極)';
+    taichiTitle.style.cssText = 'color: #2563eb; margin-bottom: 1rem;';
+    taichiSection.appendChild(taichiTitle);
+
+    // 태극 SVG
+    const taichiSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    taichiSvg.setAttribute('width', '200');
+    taichiSvg.setAttribute('height', '200');
+    taichiSvg.setAttribute('viewBox', '0 0 200 200');
+    taichiSvg.style.cssText = 'width: 200px; height: 200px; margin: 0 auto; animation: rotate 20s linear infinite;';
+
+    // 태극 패턴
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+    clipPath.setAttribute('id', 'yin-yang-clip');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M100,10 A90,90 0 0,1 100,190 A45,45 0 0,1 100,100 A45,45 0 0,0 100,10');
+    clipPath.appendChild(path);
+    defs.appendChild(clipPath);
+    taichiSvg.appendChild(defs);
+
+    // 외곽 원
+    const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    outerCircle.setAttribute('cx', '100');
+    outerCircle.setAttribute('cy', '100');
+    outerCircle.setAttribute('r', '90');
+    outerCircle.setAttribute('fill', 'white');
+    outerCircle.setAttribute('stroke', '#2563eb');
+    outerCircle.setAttribute('stroke-width', '3');
+    taichiSvg.appendChild(outerCircle);
+
+    // 음 (검정)
+    const yin = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    yin.setAttribute('d', 'M100,10 A90,90 0 0,1 100,190 A45,45 0 0,1 100,100 A45,45 0 0,0 100,10');
+    yin.setAttribute('fill', '#1e40af');
+    taichiSvg.appendChild(yin);
+
+    // 양의 점
+    const yangDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    yangDot.setAttribute('cx', '100');
+    yangDot.setAttribute('cy', '55');
+    yangDot.setAttribute('r', '12');
+    yangDot.setAttribute('fill', '#1e40af');
+    taichiSvg.appendChild(yangDot);
+
+    // 음의 점
+    const yinDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    yinDot.setAttribute('cx', '100');
+    yinDot.setAttribute('cy', '145');
+    yinDot.setAttribute('r', '12');
+    yinDot.setAttribute('fill', 'white');
+    taichiSvg.appendChild(yinDot);
+
+    taichiSection.appendChild(taichiSvg);
+
+    const taichiDesc = document.createElement('p');
+    taichiDesc.textContent = '음과 양의 조화, 대립과 공존을 나타내는 도가 사상의 핵심 상징';
+    taichiDesc.style.cssText = 'color: #666; margin-top: 1rem;';
+    taichiSection.appendChild(taichiDesc);
+
+    content.appendChild(taichiSection);
+
+    // 물의 흐름 섹션
+    const waterSection = document.createElement('div');
+    waterSection.style.cssText = 'text-align: center;';
+
+    const waterTitle = document.createElement('h3');
+    waterTitle.textContent = '🌊 물의 흐름';
+    waterTitle.style.cssText = 'color: #2563eb; margin-bottom: 1rem;';
+    waterSection.appendChild(waterTitle);
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 400;
+    canvas.height = 200;
+    canvas.style.cssText = 'width: 100%; max-width: 400px; height: auto; border-radius: 12px; background: linear-gradient(to bottom, #e0f2fe, #bfdbfe);';
+    waterSection.appendChild(canvas);
+
+    const waterDesc = document.createElement('p');
+    waterDesc.textContent = '上善若水 (상선약수) - 최고의 선은 물과 같다';
+    waterDesc.style.cssText = 'color: #666; margin-top: 1rem;';
+    waterSection.appendChild(waterDesc);
+
+    content.appendChild(waterSection);
+
+    // Canvas 물 애니메이션
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+
+    for (let i = 0; i < 50; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            speed: 0.5 + Math.random() * 1,
+            radius: 2 + Math.random() * 3
+        });
+    }
+
+    function animateWater() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            p.x += p.speed;
+            p.y += Math.sin(p.x / 30) * 0.5;
+
+            if (p.x > canvas.width) {
+                p.x = 0;
+                p.y = Math.random() * canvas.height;
+            }
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(37, 99, 235, ${0.3 + Math.random() * 0.3})`;
+            ctx.fill();
+        });
+
+        requestAnimationFrame(animateWater);
+    }
+
+    animateWater();
+
+    modal.querySelector('.symbol-modal-body').appendChild(content);
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('show'), 10);
+}
+
+// 불의 상징 모달
+function openBuddhaSymbolsModal() {
+    const modal = createSymbolModal(
+        '佛의 상징 - 법륜과 연꽃',
+        'Symbols of Buddha - Dharma Wheel and Lotus',
+        '#d97706'
+    );
+
+    const content = document.createElement('div');
+    content.style.cssText = 'padding: 2rem 0;';
+
+    // 법륜 섹션
+    const wheelSection = document.createElement('div');
+    wheelSection.style.cssText = 'text-align: center; margin-bottom: 3rem;';
+
+    const wheelTitle = document.createElement('h3');
+    wheelTitle.textContent = '☸️ 법륜 (法輪)';
+    wheelTitle.style.cssText = 'color: #d97706; margin-bottom: 1rem;';
+    wheelSection.appendChild(wheelTitle);
+
+    // 법륜 SVG
+    const wheelSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    wheelSvg.setAttribute('width', '200');
+    wheelSvg.setAttribute('height', '200');
+    wheelSvg.setAttribute('viewBox', '0 0 200 200');
+    wheelSvg.style.cssText = 'width: 200px; height: 200px; margin: 0 auto; animation: rotate 30s linear infinite;';
+
+    // 외곽 원
+    const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    outerCircle.setAttribute('cx', '100');
+    outerCircle.setAttribute('cy', '100');
+    outerCircle.setAttribute('r', '90');
+    outerCircle.setAttribute('fill', 'none');
+    outerCircle.setAttribute('stroke', '#d97706');
+    outerCircle.setAttribute('stroke-width', '6');
+    wheelSvg.appendChild(outerCircle);
+
+    // 중심 원
+    const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    centerCircle.setAttribute('cx', '100');
+    centerCircle.setAttribute('cy', '100');
+    centerCircle.setAttribute('r', '20');
+    centerCircle.setAttribute('fill', '#d97706');
+    wheelSvg.appendChild(centerCircle);
+
+    // 8개의 살 (팔정도)
+    const paths = ['正見', '正思', '正語', '正業', '正命', '正精進', '正念', '正定'];
+    for (let i = 0; i < 8; i++) {
+        const angle = (i * 45 - 90) * Math.PI / 180;
+        const x1 = 100 + 20 * Math.cos(angle);
+        const y1 = 100 + 20 * Math.sin(angle);
+        const x2 = 100 + 90 * Math.cos(angle);
+        const y2 = 100 + 90 * Math.sin(angle);
+
+        const spoke = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        spoke.setAttribute('x1', x1);
+        spoke.setAttribute('y1', y1);
+        spoke.setAttribute('x2', x2);
+        spoke.setAttribute('y2', y2);
+        spoke.setAttribute('stroke', '#d97706');
+        spoke.setAttribute('stroke-width', '3');
+        wheelSvg.appendChild(spoke);
+    }
+
+    wheelSection.appendChild(wheelSvg);
+
+    const wheelDesc = document.createElement('p');
+    wheelDesc.textContent = '팔정도 (八正道) - 부처의 가르침을 전파하는 법의 수레바퀴';
+    wheelDesc.style.cssText = 'color: #666; margin-top: 1rem;';
+    wheelSection.appendChild(wheelDesc);
+
+    content.appendChild(wheelSection);
+
+    // 연꽃 섹션
+    const lotusSection = document.createElement('div');
+    lotusSection.style.cssText = 'text-align: center;';
+
+    const lotusTitle = document.createElement('h3');
+    lotusTitle.textContent = '🪷 연꽃 (蓮華)';
+    lotusTitle.style.cssText = 'color: #d97706; margin-bottom: 1rem;';
+    lotusSection.appendChild(lotusTitle);
+
+    // 연꽃 SVG
+    const lotusSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    lotusSvg.setAttribute('width', '200');
+    lotusSvg.setAttribute('height', '200');
+    lotusSvg.setAttribute('viewBox', '0 0 200 200');
+    lotusSvg.style.cssText = 'width: 200px; height: 200px; margin: 0 auto;';
+
+    // 8개의 꽃잎
+    const petals = [
+        { x: 100, y: 40, rotate: 0 },
+        { x: 141, y: 59, rotate: 45 },
+        { x: 160, y: 100, rotate: 90 },
+        { x: 141, y: 141, rotate: 135 },
+        { x: 100, y: 160, rotate: 180 },
+        { x: 59, y: 141, rotate: 225 },
+        { x: 40, y: 100, rotate: 270 },
+        { x: 59, y: 59, rotate: 315 }
+    ];
+
+    petals.forEach((petal, index) => {
+        const petalElem = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+        petalElem.setAttribute('cx', petal.x);
+        petalElem.setAttribute('cy', petal.y);
+        petalElem.setAttribute('rx', '25');
+        petalElem.setAttribute('ry', '50');
+        petalElem.setAttribute('fill', '#fbbf24');
+        petalElem.setAttribute('opacity', '0.8');
+        petalElem.setAttribute('transform', `rotate(${petal.rotate}, ${petal.x}, ${petal.y})`);
+        petalElem.style.animation = `bloomPetal 2s ease-out ${index * 0.1}s both`;
+        lotusSvg.appendChild(petalElem);
+    });
+
+    // 중심
+    const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    center.setAttribute('cx', '100');
+    center.setAttribute('cy', '100');
+    center.setAttribute('r', '15');
+    center.setAttribute('fill', '#d97706');
+    lotusSvg.appendChild(center);
+
+    lotusSection.appendChild(lotusSvg);
+
+    const lotusDesc = document.createElement('p');
+    lotusDesc.textContent = '진흙 속에서 피어나 깨끗한 꽃, 번뇌 속에서 깨달음을 상징';
+    lotusDesc.style.cssText = 'color: #666; margin-top: 1rem;';
+    lotusSection.appendChild(lotusDesc);
+
+    content.appendChild(lotusSection);
+
+    modal.querySelector('.symbol-modal-body').appendChild(content);
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('show'), 10);
+}
+
+// 모달 생성 함수
+function createSymbolModal(title, titleEn, color) {
+    const modal = document.createElement('div');
+    modal.className = 'symbol-modal';
+    modal.innerHTML = `
+        <div class="symbol-modal-overlay" onclick="this.parentElement.remove()"></div>
+        <div class="symbol-modal-content">
+            <button class="symbol-modal-close" onclick="this.closest('.symbol-modal').remove()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="symbol-modal-header" style="border-bottom: 3px solid ${color};">
+                <h2 style="color: ${color};">${title}</h2>
+                <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">${titleEn}</p>
+            </div>
+            <div class="symbol-modal-body"></div>
+        </div>
+    `;
+    return modal;
+}
+
+// CSS 스타일 추가
+const symbolModalStyles = document.createElement('style');
+symbolModalStyles.textContent = `
+    .symbol-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .symbol-modal.show {
+        opacity: 1;
+    }
+
+    .symbol-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+    }
+
+    .symbol-modal-content {
+        position: relative;
+        background: white;
+        border-radius: 20px;
+        max-width: 800px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .symbol-modal.show .symbol-modal-content {
+        transform: scale(1);
+    }
+
+    .symbol-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(0, 0, 0, 0.05);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        z-index: 10;
+    }
+
+    .symbol-modal-close:hover {
+        background: rgba(0, 0, 0, 0.1);
+        transform: rotate(90deg);
+    }
+
+    .symbol-modal-header {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .symbol-modal-header h2 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    .symbol-modal-body {
+        padding: 0 2rem 2rem 2rem;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes bloomPetal {
+        from {
+            transform: scale(0);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .symbol-modal-content {
+            max-width: 95%;
+            max-height: 95vh;
+        }
+
+        .symbol-modal-header {
+            padding: 1.5rem 1rem;
+        }
+
+        .symbol-modal-header h2 {
+            font-size: 1.4rem;
+        }
+
+        .symbol-modal-body {
+            padding: 0 1rem 1.5rem 1rem;
+        }
+    }
+`;
+document.head.appendChild(symbolModalStyles);
+
+console.log('✅ 동양 철학 상징물 모달 로드 완료');
