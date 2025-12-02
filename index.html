@@ -139,6 +139,7 @@
     <script src="features.js" defer></script>
     <script src="lazy-loading.js" defer></script>
     <script src="search-feature.js" defer></script>
+    <script src="symbols.js" defer></script>
 
     <!-- 3D Model Viewer -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
@@ -298,6 +299,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- 육예 상징물 섹션 -->
+            <section class="section symbols-section" style="background: linear-gradient(135deg, rgba(139, 0, 0, 0.03) 0%, rgba(139, 0, 0, 0.08) 100%); padding: 4rem 0;">
+                <div class="container">
+                    <h2 class="section-title" style="color: #8b0000;">
+                        <span data-ko="六藝 (육예) - 군자의 여섯 가지 기예" data-en="Six Arts (六藝) - Six Skills of a Gentleman">六藝 (육예) - 군자의 여섯 가지 기예</span>
+                    </h2>
+                    <div id="confucius-symbols" style="padding: 2rem 0;"></div>
                 </div>
             </section>
 
@@ -951,6 +962,16 @@
                 </div>
             </section>
 
+            <!-- 태극 상징물 섹션 -->
+            <section class="section symbols-section" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(37, 99, 235, 0.08) 100%); padding: 4rem 0;">
+                <div class="container">
+                    <h2 class="section-title" style="color: #2563eb;">
+                        <span data-ko="道의 상징 - 태극과 물의 흐름" data-en="Symbols of Tao - Yin Yang and Flowing Water">道의 상징 - 태극과 물의 흐름</span>
+                    </h2>
+                    <div id="laozi-symbols" style="padding: 2rem 0;"></div>
+                </div>
+            </section>
+
             <!-- 명언 섹션 -->
             <section class="section quotes-section">
                 <div class="container">
@@ -1493,6 +1514,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- 법륜 상징물 섹션 -->
+            <section class="section symbols-section" style="background: linear-gradient(135deg, rgba(217, 119, 6, 0.03) 0%, rgba(217, 119, 6, 0.08) 100%); padding: 4rem 0;">
+                <div class="container">
+                    <h2 class="section-title" style="color: #d97706;">
+                        <span data-ko="佛의 상징 - 법륜과 연꽃" data-en="Symbols of Buddha - Dharma Wheel and Lotus">佛의 상징 - 법륜과 연꽃</span>
+                    </h2>
+                    <div id="buddha-symbols" style="padding: 2rem 0;"></div>
                 </div>
             </section>
 
@@ -3260,6 +3291,28 @@
     <script src="analects-ebook.js"></script>
     <script src="laozi-ebook.js"></script>
     <script src="buddha-ebook.js"></script>
+
+    <!-- 상징물 초기화 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 공자 - 육예 다이어그램
+            if (document.getElementById('confucius-symbols')) {
+                new SixArtsCircle('confucius-symbols');
+            }
+
+            // 노자 - 태극과 물
+            if (document.getElementById('laozi-symbols')) {
+                new TaoSymbols('laozi-symbols');
+            }
+
+            // 석가모니 - 법륜과 연꽃
+            if (document.getElementById('buddha-symbols')) {
+                new BuddhistSymbols('buddha-symbols');
+            }
+
+            console.log('✅ 동양 철학 상징물 초기화 완료');
+        });
+    </script>
 
 </body>
 </html>
