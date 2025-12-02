@@ -577,6 +577,32 @@ const analectsData = {
                     terms: {}
                 },
                 {
+                    number: "1.2",
+                    text: "君子務本，本立而道生。",
+                    translation: "君子致力于根本，根本确立了，道就产生了。",
+                    commentary: "强调孝悌是仁的根本。",
+                    terms: {}
+                },
+                {
+                    number: "1.4",
+                    text: "曾子曰：吾日三省吾身。",
+                    translation: "曾子说：我每天三次反省自己。",
+                    commentary: "每日自我反省的重要性。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第二篇 為政",
+            passages: [
+                {
+                    number: "2.1",
+                    text: "為政以德，譬如北辰居其所，而眾星共之。",
+                    translation: "以德治国，就像北极星处在它的位置，众星围绕着它。",
+                    commentary: "德治主义的核心。",
+                    terms: {}
+                },
+                {
                     number: "2.4",
                     text: "吾十有五而志于學，三十而立，四十而不惑，五十而知天命。",
                     translation: "我十五岁立志于学问，三十岁能够自立，四十岁不受迷惑，五十岁知晓天命。",
@@ -591,6 +617,42 @@ const analectsData = {
                     terms: {}
                 },
                 {
+                    number: "2.17",
+                    text: "知之為知之，不知為不知，是知也。",
+                    translation: "知道就说知道，不知道就说不知道，这才是真知。",
+                    commentary: "真正的知识态度。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第四篇 里仁",
+            passages: [
+                {
+                    number: "4.15",
+                    text: "吾道一以貫之。",
+                    translation: "我的道用一个原则贯穿始终。",
+                    commentary: "孔子思想的核心统一性。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第六篇 雍也",
+            passages: [
+                {
+                    number: "6.23",
+                    text: "知者樂水，仁者樂山。",
+                    translation: "智者喜欢水，仁者喜欢山。",
+                    commentary: "智与仁的不同性格特征。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第七篇 述而",
+            passages: [
+                {
                     number: "7.8",
                     text: "不憤不啟，不悱不發。",
                     translation: "不到苦思冥想时不去启发，不到欲说无言时不去开导。",
@@ -598,10 +660,108 @@ const analectsData = {
                     terms: {}
                 },
                 {
+                    number: "7.22",
+                    text: "三人行，必有我師焉。",
+                    translation: "三个人同行，必定有我的老师。",
+                    commentary: "谦虚学习的态度。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第九篇 子罕",
+            passages: [
+                {
+                    number: "9.11",
+                    text: "子在川上曰：逝者如斯夫，不舍晝夜。",
+                    translation: "孔子在河边说：逝去的时光就像这流水，日夜不停。",
+                    commentary: "感叹时光流逝，劝人珍惜时间。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第十二篇 顏淵",
+            passages: [
+                {
+                    number: "12.1",
+                    text: "克己復禮為仁。",
+                    translation: "克制自己回归礼，就是仁。",
+                    commentary: "仁的实践方法。",
+                    terms: {}
+                },
+                {
+                    number: "12.2",
+                    text: "己所不欲，勿施於人。",
+                    translation: "自己不想要的，不要施加给别人。",
+                    commentary: "儒家的黄金法则。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第十五篇 衛靈公",
+            passages: [
+                {
                     number: "15.24",
                     text: "己所不欲，勿施於人。",
                     translation: "自己不想要的，不要施加给别人。",
                     commentary: "儒家的黄金法则。",
+                    terms: {}
+                },
+                {
+                    number: "15.29",
+                    text: "人能弘道，非道弘人。",
+                    translation: "人能够弘扬道，而不是道弘扬人。",
+                    commentary: "强调人的主体性。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第十六篇 季氏",
+            passages: [
+                {
+                    number: "16.9",
+                    text: "君子有三戒：少之時，血氣未定，戒之在色。",
+                    translation: "君子有三戒：年少时血气未定，要戒色欲。",
+                    commentary: "人生不同阶段的修养。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第十七篇 陽貨",
+            passages: [
+                {
+                    number: "17.2",
+                    text: "性相近也，習相遠也。",
+                    translation: "人性本来相近，习惯使人相距甚远。",
+                    commentary: "论述人性与教育的关系。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第十九篇 子張",
+            passages: [
+                {
+                    number: "19.6",
+                    text: "君子有三變：望之儼然，即之也溫，聽其言也厲。",
+                    translation: "君子有三种变化：远看庄严，接近温和，听他说话严厉。",
+                    commentary: "君子的外在形象。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第二十篇 堯曰",
+            passages: [
+                {
+                    number: "20.3",
+                    text: "孔子曰：不知命，無以為君子也。",
+                    translation: "孔子说：不知天命，就无法成为君子。",
+                    commentary: "知天命的重要性。",
                     terms: {}
                 }
             ]
@@ -639,6 +799,32 @@ const analectsData = {
                     terms: {}
                 },
                 {
+                    number: "1.2",
+                    text: "君子務本，本立而道生。",
+                    translation: "The gentleman devotes his efforts to the roots. Once the roots are established, the Way will grow.",
+                    commentary: "Emphasizes that filial piety and fraternal duty are the root of humaneness.",
+                    terms: {}
+                },
+                {
+                    number: "1.4",
+                    text: "曾子曰：吾日三省吾身。",
+                    translation: "Zengzi said: I examine myself three times a day.",
+                    commentary: "The importance of daily self-reflection.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book II - Governing",
+            passages: [
+                {
+                    number: "2.1",
+                    text: "為政以德，譬如北辰居其所，而眾星共之。",
+                    translation: "Govern with virtue, and you will be like the North Star, which remains in its place while all other stars revolve around it.",
+                    commentary: "The core of governance through virtue.",
+                    terms: {}
+                },
+                {
                     number: "2.4",
                     text: "吾十有五而志于學，三十而立，四十而不惑，五十而知天命。",
                     translation: "At fifteen, I set my heart on learning. At thirty, I established myself. At forty, I had no doubts. At fifty, I knew the will of Heaven.",
@@ -653,6 +839,42 @@ const analectsData = {
                     terms: {}
                 },
                 {
+                    number: "2.17",
+                    text: "知之為知之，不知為不知，是知也。",
+                    translation: "To know what you know and what you do not know, that is true knowledge.",
+                    commentary: "The attitude of true knowledge.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book IV - On Virtue",
+            passages: [
+                {
+                    number: "4.15",
+                    text: "吾道一以貫之。",
+                    translation: "My Way is bound together by one thread.",
+                    commentary: "The unity at the core of Confucian thought.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book VI - Yong Ye",
+            passages: [
+                {
+                    number: "6.23",
+                    text: "知者樂水，仁者樂山。",
+                    translation: "The wise find joy in water; the virtuous find joy in mountains.",
+                    commentary: "Different characteristics of wisdom and virtue.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book VII -述而",
+            passages: [
+                {
                     number: "7.8",
                     text: "不憤不啟，不悱不發。",
                     translation: "I do not enlighten those who are not eager to learn, nor arouse those who are not trying to express themselves.",
@@ -660,10 +882,108 @@ const analectsData = {
                     terms: {}
                 },
                 {
+                    number: "7.22",
+                    text: "三人行，必有我師焉。",
+                    translation: "When walking with two others, I will certainly find a teacher among them.",
+                    commentary: "The attitude of humble learning.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book IX - Zi Han",
+            passages: [
+                {
+                    number: "9.11",
+                    text: "子在川上曰：逝者如斯夫，不舍晝夜。",
+                    translation: "The Master standing by a river said: What passes away is like this, flowing day and night without cease.",
+                    commentary: "Lamenting the passage of time, urging people to cherish it.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book XII - Yan Yuan",
+            passages: [
+                {
+                    number: "12.1",
+                    text: "克己復禮為仁。",
+                    translation: "To overcome the self and return to propriety is humaneness.",
+                    commentary: "The practical method of humaneness.",
+                    terms: {}
+                },
+                {
+                    number: "12.2",
+                    text: "己所不欲，勿施於人。",
+                    translation: "What you do not wish for yourself, do not impose on others.",
+                    commentary: "The Confucian Golden Rule.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book XV - Duke Ling of Wei",
+            passages: [
+                {
                     number: "15.24",
                     text: "己所不欲，勿施於人。",
                     translation: "What you do not wish for yourself, do not impose on others.",
                     commentary: "The Confucian Golden Rule.",
+                    terms: {}
+                },
+                {
+                    number: "15.29",
+                    text: "人能弘道，非道弘人。",
+                    translation: "It is the person who can make the Way great, not the Way that makes the person great.",
+                    commentary: "Emphasizes human agency.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book XVI - Ji Shi",
+            passages: [
+                {
+                    number: "16.9",
+                    text: "君子有三戒：少之時，血氣未定，戒之在色。",
+                    translation: "The gentleman has three cautions: in youth, when the vital powers are not yet settled, guard against lust.",
+                    commentary: "Cultivation at different stages of life.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book XVII - Yang Huo",
+            passages: [
+                {
+                    number: "17.2",
+                    text: "性相近也，習相遠也。",
+                    translation: "By nature, people are alike; through practice, they grow apart.",
+                    commentary: "On the relationship between human nature and education.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book XIX - Zi Zhang",
+            passages: [
+                {
+                    number: "19.6",
+                    text: "君子有三變：望之儼然，即之也溫，聽其言也厲。",
+                    translation: "The gentleman undergoes three transformations: from a distance, he appears dignified; when approached, he is warm; hearing his words, he is stern.",
+                    commentary: "The external image of a gentleman.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Book XX - Yao Yue",
+            passages: [
+                {
+                    number: "20.3",
+                    text: "孔子曰：不知命，無以為君子也。",
+                    translation: "Confucius said: Without understanding the will of Heaven, one cannot become a gentleman.",
+                    commentary: "The importance of knowing Heaven's mandate.",
                     terms: {}
                 }
             ]

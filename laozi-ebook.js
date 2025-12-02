@@ -460,6 +460,30 @@ const daoDeJingData = {
             ]
         },
         {
+            chapter: "第十六章",
+            passages: [
+                {
+                    number: "16",
+                    text: "致虛極，守靜篤。",
+                    translation: "达到虚的极致，坚守静的笃定。",
+                    commentary: "虚静是道的修养方法。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第二十五章",
+            passages: [
+                {
+                    number: "25",
+                    text: "人法地，地法天，天法道，道法自然。",
+                    translation: "人效法地，地效法天，天效法道，道效法自然。",
+                    commentary: "说明道的终极本质是自然。",
+                    terms: {}
+                }
+            ]
+        },
+        {
             chapter: "第三十三章",
             passages: [
                 {
@@ -467,6 +491,42 @@ const daoDeJingData = {
                     text: "知人者智，自知者明。",
                     translation: "了解别人的人有智慧，了解自己的人更明智。",
                     commentary: "强调自我认识的重要性。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第四十八章",
+            passages: [
+                {
+                    number: "48",
+                    text: "為學日益，為道日損。",
+                    translation: "做学问每天增加，修道每天减少。",
+                    commentary: "学问与修道的不同方法。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第六十四章",
+            passages: [
+                {
+                    number: "64",
+                    text: "千里之行，始於足下。",
+                    translation: "千里的行程，从脚下开始。",
+                    commentary: "强调行动和开始的重要性。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第七十六章",
+            passages: [
+                {
+                    number: "76",
+                    text: "柔弱勝剛強。",
+                    translation: "柔弱胜过刚强。",
+                    commentary: "柔弱的力量。",
                     terms: {}
                 }
             ]
@@ -542,6 +602,30 @@ const daoDeJingData = {
             ]
         },
         {
+            chapter: "Chapter 16",
+            passages: [
+                {
+                    number: "16",
+                    text: "致虛極，守靜篤。",
+                    translation: "Attain the utmost emptiness; hold fast to stillness.",
+                    commentary: "Emptiness and stillness as methods of cultivating the Tao.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Chapter 25",
+            passages: [
+                {
+                    number: "25",
+                    text: "人法地，地法天，天法道，道法自然。",
+                    translation: "Man follows earth, earth follows heaven, heaven follows Tao, Tao follows nature.",
+                    commentary: "Explains that the ultimate nature of Tao is spontaneity.",
+                    terms: {}
+                }
+            ]
+        },
+        {
             chapter: "Chapter 33",
             passages: [
                 {
@@ -549,6 +633,42 @@ const daoDeJingData = {
                     text: "知人者智，自知者明。",
                     translation: "Knowing others is wisdom; knowing oneself is enlightenment.",
                     commentary: "Emphasizes the importance of self-knowledge.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Chapter 48",
+            passages: [
+                {
+                    number: "48",
+                    text: "為學日益，為道日損。",
+                    translation: "In pursuit of learning, every day something is added. In pursuit of Tao, every day something is dropped.",
+                    commentary: "Different approaches to learning and cultivating the Way.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Chapter 64",
+            passages: [
+                {
+                    number: "64",
+                    text: "千里之行，始於足下。",
+                    translation: "A journey of a thousand miles begins with a single step.",
+                    commentary: "Emphasizes the importance of action and beginnings.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Chapter 76",
+            passages: [
+                {
+                    number: "76",
+                    text: "柔弱勝剛強。",
+                    translation: "The soft and weak overcome the hard and strong.",
+                    commentary: "The power of softness.",
                     terms: {}
                 }
             ]

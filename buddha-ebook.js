@@ -462,6 +462,30 @@ const dhammpadaData = {
             ]
         },
         {
+            chapter: "第三品 心品",
+            passages: [
+                {
+                    number: "33",
+                    text: "輕動變易心，難護難禁止。",
+                    translation: "轻浮善变的心，难以守护、难以控制。",
+                    commentary: "心的训练需要持续的努力。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第五品 愚品",
+            passages: [
+                {
+                    number: "60",
+                    text: "不眠夜長，倦行路長，愚生死長。",
+                    translation: "不眠者觉夜长，疲倦者觉路长，愚者觉生死轮回长。",
+                    commentary: "无明使生死轮回显得漫长。",
+                    terms: {}
+                }
+            ]
+        },
+        {
             chapter: "第六品 智者品",
             passages: [
                 {
@@ -474,6 +498,30 @@ const dhammpadaData = {
             ]
         },
         {
+            chapter: "第十品 刀杖品",
+            passages: [
+                {
+                    number: "129",
+                    text: "一切懼刀杖，一切皆畏死。",
+                    translation: "一切众生都害怕刀杖，一切众生都畏惧死亡。",
+                    commentary: "以己度人，慈悲待众生。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第十二品 自己品",
+            passages: [
+                {
+                    number: "160",
+                    text: "自己是自己的依怙。",
+                    translation: "自己是自己的依靠。",
+                    commentary: "强调自我修行的重要性。",
+                    terms: {}
+                }
+            ]
+        },
+        {
             chapter: "第十四品 佛陀品",
             passages: [
                 {
@@ -481,6 +529,18 @@ const dhammpadaData = {
                     text: "諸惡莫作，眾善奉行，自淨其意，是諸佛教。",
                     translation: "不作任何恶事，奉行一切善事，净化自己的心意，这就是诸佛的教导。",
                     commentary: "佛教的核心教义。",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "第二十品 道品",
+            passages: [
+                {
+                    number: "273",
+                    text: "八正道最勝，四諦最勝法。",
+                    translation: "八正道最殊胜，四圣谛最殊胜法。",
+                    commentary: "佛教的核心修行法门。",
                     terms: {}
                 }
             ]
@@ -544,6 +604,30 @@ const dhammpadaData = {
             ]
         },
         {
+            chapter: "Chapter 3 - The Mind",
+            passages: [
+                {
+                    number: "33",
+                    text: "輕動變易心，難護難禁止。",
+                    translation: "The restless, agitated mind is difficult to guard and restrain.",
+                    commentary: "Training the mind requires continuous effort.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Chapter 5 - The Fool",
+            passages: [
+                {
+                    number: "60",
+                    text: "不眠夜長，倦行路長，愚生死長。",
+                    translation: "Long is the night to the sleepless; long is the road to the weary; long is samsara to the foolish.",
+                    commentary: "Ignorance makes the cycle of rebirth seem endless.",
+                    terms: {}
+                }
+            ]
+        },
+        {
             chapter: "Chapter 6 - The Wise",
             passages: [
                 {
@@ -556,6 +640,30 @@ const dhammpadaData = {
             ]
         },
         {
+            chapter: "Chapter 10 - Violence",
+            passages: [
+                {
+                    number: "129",
+                    text: "一切懼刀杖，一切皆畏死。",
+                    translation: "All tremble at violence; all fear death.",
+                    commentary: "Put yourself in another's place; show compassion to all beings.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Chapter 12 - Self",
+            passages: [
+                {
+                    number: "160",
+                    text: "自己是自己的依怙。",
+                    translation: "One is one's own refuge.",
+                    commentary: "Emphasizes the importance of self-cultivation.",
+                    terms: {}
+                }
+            ]
+        },
+        {
             chapter: "Chapter 14 - The Buddha",
             passages: [
                 {
@@ -563,6 +671,18 @@ const dhammpadaData = {
                     text: "諸惡莫作，眾善奉行，自淨其意，是諸佛教。",
                     translation: "To avoid all evil, to cultivate good, and to purify one's mind - this is the teaching of all Buddhas.",
                     commentary: "The core teaching of Buddhism.",
+                    terms: {}
+                }
+            ]
+        },
+        {
+            chapter: "Chapter 20 - The Path",
+            passages: [
+                {
+                    number: "273",
+                    text: "八正道最勝，四諦最勝法。",
+                    translation: "The Eightfold Path is the best path; the Four Noble Truths are the best teachings.",
+                    commentary: "The core practices of Buddhist training.",
                     terms: {}
                 }
             ]

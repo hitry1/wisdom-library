@@ -1120,6 +1120,312 @@ class SearchManager {
 // 전역 인스턴스 생성
 window.searchManager = new SearchManager();
 
-console.log('✅ Features.js 로드 완료: 북마크, 공유, 검색 기능 활성화');
+// ===== 오늘의 명언 팝업 기능 =====
+
+class DailyQuotePopup {
+    constructor() {
+        this.storageKey = 'daily_quote_shown';
+        this.quotes = [
+            {
+                character: '공자',
+                title: '孔子',
+                text: '學而時習之，不亦說乎？',
+                translation: '배우고 때때로 익히면 또한 기쁘지 아니한가.',
+                color: '#8b0000'
+            },
+            {
+                character: '공자',
+                title: '孔子',
+                text: '溫故而知新，可以為師矣。',
+                translation: '옛것을 익혀 새것을 알면 스승이 될 수 있다.',
+                color: '#8b0000'
+            },
+            {
+                character: '공자',
+                title: '孔子',
+                text: '己所不欲，勿施於人。',
+                translation: '자기가 원하지 않는 것을 남에게 베풀지 말라.',
+                color: '#8b0000'
+            },
+            {
+                character: '공자',
+                title: '孔子',
+                text: '三人行，必有我師焉。',
+                translation: '세 사람이 가면 반드시 나의 스승이 있다.',
+                color: '#8b0000'
+            },
+            {
+                character: '노자',
+                title: '老子',
+                text: '道可道，非常道。',
+                translation: '도를 도라고 말할 수 있으면 영원한 도가 아니다.',
+                color: '#2563eb'
+            },
+            {
+                character: '노자',
+                title: '老子',
+                text: '上善若水。',
+                translation: '최상의 선은 물과 같다.',
+                color: '#2563eb'
+            },
+            {
+                character: '노자',
+                title: '老子',
+                text: '知人者智，自知者明。',
+                translation: '남을 아는 사람은 지혜롭고, 자기를 아는 사람은 명철하다.',
+                color: '#2563eb'
+            },
+            {
+                character: '노자',
+                title: '老子',
+                text: '千里之行，始於足下。',
+                translation: '천 리 길도 한 걸음부터 시작한다.',
+                color: '#2563eb'
+            },
+            {
+                character: '석가모니',
+                title: '釋迦牟尼',
+                text: '諸法意先導。',
+                translation: '모든 것은 마음이 앞서고 마음이 으뜸이다.',
+                color: '#d97706'
+            },
+            {
+                character: '석가모니',
+                title: '釋迦牟尼',
+                text: '諸惡莫作，眾善奉行。',
+                translation: '모든 악을 짓지 말고 모든 선을 받들어 행하라.',
+                color: '#d97706'
+            },
+            {
+                character: '석가모니',
+                title: '釋迦牟尼',
+                text: '自己是自己的依怙。',
+                translation: '자기 자신이 자기의 의지처이다.',
+                color: '#d97706'
+            },
+            {
+                character: '석가모니',
+                title: '釋迦牟尼',
+                text: '不放逸是不死道。',
+                translation: '방일하지 않음이 불사의 길이다.',
+                color: '#d97706'
+            }
+        ];
+        this.init();
+    }
+
+    init() {
+        document.addEventListener('DOMContentLoaded', () => {
+            this.checkAndShowQuote();
+        });
+    }
+
+    // 오늘 날짜 가져오기 (YYYY-MM-DD)
+    getTodayDate() {
+        const now = new Date();
+        return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    }
+
+    // 오늘의 명언 인덱스 가져오기 (날짜 기반)
+    getTodayQuoteIndex() {
+        const today = this.getTodayDate();
+        // 날짜를 숫자로 변환하여 고유한 인덱스 생성
+        const dateNumber = parseInt(today.replace(/-/g, ''));
+        return dateNumber % this.quotes.length;
+    }
+
+    // 팝업 표시 여부 확인
+    checkAndShowQuote() {
+        const lastShown = localStorage.getItem(this.storageKey);
+        const today = this.getTodayDate();
+
+        // 오늘 이미 보여줬으면 표시하지 않음
+        if (lastShown === today) {
+            return;
+        }
+
+        // 2초 후에 팝업 표시 (페이지 로드 후 약간의 딜레이)
+        setTimeout(() => {
+            this.showQuote();
+            localStorage.setItem(this.storageKey, today);
+        }, 2000);
+    }
+
+    // 팝업 표시
+    showQuote() {
+        const quoteIndex = this.getTodayQuoteIndex();
+        const quote = this.quotes[quoteIndex];
+
+        // 팝업 HTML 생성
+        const popup = document.createElement('div');
+        popup.className = 'daily-quote-popup';
+        popup.innerHTML = `
+            <div class="daily-quote-overlay" onclick="this.parentElement.remove()"></div>
+            <div class="daily-quote-content">
+                <button class="daily-quote-close" onclick="this.closest('.daily-quote-popup').remove()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="daily-quote-header">
+                    <div class="daily-quote-icon">💫</div>
+                    <h3 class="daily-quote-title">오늘의 명언</h3>
+                </div>
+                <div class="daily-quote-body">
+                    <div class="daily-quote-character" style="color: ${quote.color}">
+                        ${quote.title} ${quote.character}
+                    </div>
+                    <div class="daily-quote-text">${quote.text}</div>
+                    <div class="daily-quote-translation">${quote.translation}</div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(popup);
+
+        // 애니메이션을 위한 약간의 딜레이
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, 10);
+    }
+}
+
+// CSS 스타일 추가
+const dailyQuoteStyles = document.createElement('style');
+dailyQuoteStyles.textContent = `
+    .daily-quote-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .daily-quote-popup.show {
+        opacity: 1;
+    }
+
+    .daily-quote-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+    }
+
+    .daily-quote-content {
+        position: relative;
+        background: linear-gradient(135deg, #faf8f3 0%, #f5f1e8 100%);
+        border-radius: 20px;
+        padding: 2.5rem;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+        border: 3px solid #d4a574;
+    }
+
+    .daily-quote-popup.show .daily-quote-content {
+        transform: scale(1);
+    }
+
+    .daily-quote-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #6b4423;
+        padding: 0.5rem;
+        border-radius: 50%;
+        transition: all 0.2s;
+    }
+
+    .daily-quote-close:hover {
+        background: rgba(107, 68, 35, 0.1);
+        transform: rotate(90deg);
+    }
+
+    .daily-quote-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .daily-quote-icon {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        animation: sparkle 2s infinite;
+    }
+
+    @keyframes sparkle {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale(1.1) rotate(10deg); }
+    }
+
+    .daily-quote-title {
+        font-size: 1.5rem;
+        color: #6b4423;
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .daily-quote-body {
+        text-align: center;
+    }
+
+    .daily-quote-character {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        font-family: serif;
+    }
+
+    .daily-quote-text {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        font-family: serif;
+        letter-spacing: 0.1em;
+    }
+
+    .daily-quote-translation {
+        font-size: 1.1rem;
+        color: #666;
+        line-height: 1.8;
+    }
+
+    @media (max-width: 640px) {
+        .daily-quote-content {
+            padding: 2rem 1.5rem;
+        }
+
+        .daily-quote-text {
+            font-size: 1.4rem;
+        }
+
+        .daily-quote-translation {
+            font-size: 1rem;
+        }
+    }
+`;
+document.head.appendChild(dailyQuoteStyles);
+
+// 전역 인스턴스 생성
+window.dailyQuotePopup = new DailyQuotePopup();
+
+console.log('✅ Features.js 로드 완료: 북마크, 공유, 검색, 오늘의 명언 기능 활성화');
 
 
