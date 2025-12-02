@@ -602,4 +602,388 @@ gameModalStyles.textContent = `
 `;
 document.head.appendChild(gameModalStyles);
 
+// ===== 소원 돌탑 쌓기 게임 =====
+
+function openStoneTowerGame() {
+    const color = '#d97706';
+
+    const modal = createGameModal(
+        '소원 돌탑 쌓기',
+        'Wish Stone Tower',
+        color
+    );
+
+    const content = document.createElement('div');
+    content.style.cssText = 'position: relative; padding: 1rem 0;';
+
+    // 게임 상태
+    let gameState = {
+        stones: [],
+        currentStone: null,
+        stoneDirection: 1,
+        stoneSpeed: 2,
+        isGameOver: false,
+        score: 0,
+        animationId: null
+    };
+
+    // Canvas 생성
+    const canvas = document.createElement('canvas');
+    canvas.width = 400;
+    canvas.height = 500;
+    canvas.style.cssText = `
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        background: linear-gradient(to bottom, #e0f2fe 0%, #f0f9ff 50%, #fef3c7 100%);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+    `;
+
+    const ctx = canvas.getContext('2d');
+
+    // 점수 표시
+    const scoreDisplay = document.createElement('div');
+    scoreDisplay.style.cssText = `
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: ${color};
+        margin-bottom: 1rem;
+    `;
+    scoreDisplay.textContent = '0층';
+
+    // 안내 문구
+    const instruction = document.createElement('div');
+    instruction.style.cssText = `
+        text-align: center;
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    `;
+    instruction.innerHTML = '🪨 화면을 클릭하여 돌을 떨어뜨리세요';
+
+    content.appendChild(scoreDisplay);
+    content.appendChild(instruction);
+    content.appendChild(canvas);
+
+    // 돌 클래스
+    class Stone {
+        constructor(x, y, width, height, isBase = false) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.isBase = isBase;
+            this.color = this.generateStoneColor();
+        }
+
+        generateStoneColor() {
+            const colors = ['#8b7355', '#a0826d', '#9c8170', '#7d6c55', '#8d7456'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        draw(ctx) {
+            // 돌 그리기 (둥근 모서리 사각형)
+            ctx.fillStyle = this.color;
+            ctx.strokeStyle = '#5a4a3a';
+            ctx.lineWidth = 2;
+
+            this.roundRect(ctx, this.x - this.width / 2, this.y - this.height / 2,
+                          this.width, this.height, 4);
+            ctx.fill();
+            ctx.stroke();
+
+            // 돌 질감 효과
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            this.roundRect(ctx, this.x - this.width / 2 + 2, this.y - this.height / 2 + 2,
+                          this.width * 0.6, this.height * 0.3, 2);
+            ctx.fill();
+        }
+
+        roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        getLeft() {
+            return this.x - this.width / 2;
+        }
+
+        getRight() {
+            return this.x + this.width / 2;
+        }
+
+        getTop() {
+            return this.y - this.height / 2;
+        }
+
+        getBottom() {
+            return this.y + this.height / 2;
+        }
+    }
+
+    // 게임 초기화
+    function initGame() {
+        gameState.stones = [];
+        gameState.score = 0;
+        gameState.isGameOver = false;
+        gameState.stoneSpeed = 2;
+
+        // 기초 돌
+        const baseStone = new Stone(canvas.width / 2, canvas.height - 30, 120, 25, true);
+        gameState.stones.push(baseStone);
+
+        // 첫 번째 돌 생성
+        spawnNewStone();
+        gameLoop();
+    }
+
+    // 새 돌 생성
+    function spawnNewStone() {
+        const lastStone = gameState.stones[gameState.stones.length - 1];
+        const newWidth = Math.max(60, lastStone.width - 2);
+        const newHeight = 25;
+        const newY = 50;
+        const newX = 50;
+
+        gameState.currentStone = new Stone(newX, newY, newWidth, newHeight);
+        gameState.stoneDirection = 1;
+        gameState.stoneSpeed = Math.min(4, 2 + gameState.score * 0.1);
+    }
+
+    // 돌 떨어뜨리기
+    function dropStone() {
+        if (gameState.isGameOver || !gameState.currentStone) return;
+
+        const droppedStone = gameState.currentStone;
+        const lastStone = gameState.stones[gameState.stones.length - 1];
+
+        // 떨어질 위치 계산
+        droppedStone.y = lastStone.y - lastStone.height;
+
+        // 겹치는 영역 계산
+        const overlapLeft = Math.max(droppedStone.getLeft(), lastStone.getLeft());
+        const overlapRight = Math.min(droppedStone.getRight(), lastStone.getRight());
+        const overlap = overlapRight - overlapLeft;
+
+        if (overlap > 10) {
+            // 성공 - 겹치는 부분만 남김
+            droppedStone.x = (overlapLeft + overlapRight) / 2;
+            droppedStone.width = overlap;
+
+            gameState.stones.push(droppedStone);
+            gameState.currentStone = null;
+            gameState.score++;
+
+            // 점수 업데이트
+            scoreDisplay.textContent = `${gameState.score}층`;
+
+            // 성공 효과
+            playSuccessEffect();
+
+            // 다음 돌 생성
+            setTimeout(() => {
+                if (!gameState.isGameOver) {
+                    spawnNewStone();
+                }
+            }, 500);
+        } else {
+            // 실패
+            gameOver();
+        }
+    }
+
+    // 성공 효과
+    function playSuccessEffect() {
+        instruction.innerHTML = '✨ 좋아요!';
+        instruction.style.color = color;
+        setTimeout(() => {
+            if (!gameState.isGameOver) {
+                instruction.innerHTML = '🪨 화면을 클릭하여 돌을 떨어뜨리세요';
+                instruction.style.color = '#666';
+            }
+        }, 500);
+    }
+
+    // 게임 오버
+    function gameOver() {
+        gameState.isGameOver = true;
+        cancelAnimationFrame(gameState.animationId);
+
+        // 게임 오버 화면
+        const gameOverScreen = document.createElement('div');
+        gameOverScreen.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 10;
+            min-width: 300px;
+        `;
+
+        gameOverScreen.innerHTML = `
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🙏</div>
+            <div style="font-size: 1.5rem; font-weight: 600; color: ${color}; margin-bottom: 0.5rem;">
+                ${gameState.score}층 석탑
+            </div>
+            <div style="font-size: 1rem; color: #666; margin-bottom: 1.5rem;">
+                당신의 정성이 ${gameState.score}층 석탑으로 쌓였습니다
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <input type="text" id="wish-input" placeholder="이 탑에 빌 소원을 적어주세요"
+                       style="width: 100%; padding: 0.75rem; border: 2px solid ${color};
+                              border-radius: 8px; font-size: 0.9rem; text-align: center;">
+            </div>
+            <button id="submit-wish" style="padding: 0.75rem 2rem; background: ${color};
+                    color: white; border: none; border-radius: 8px; font-size: 1rem;
+                    font-weight: 600; cursor: pointer; margin-right: 0.5rem;">
+                소원 빌기
+            </button>
+            <button id="restart-game" style="padding: 0.75rem 2rem; background: #666;
+                    color: white; border: none; border-radius: 8px; font-size: 1rem;
+                    font-weight: 600; cursor: pointer;">
+                다시 쌓기
+            </button>
+        `;
+
+        content.appendChild(gameOverScreen);
+
+        // 소원 빌기
+        setTimeout(() => {
+            const wishInput = document.getElementById('wish-input');
+            const submitBtn = document.getElementById('submit-wish');
+            const restartBtn = document.getElementById('restart-game');
+
+            const submitWish = () => {
+                const wish = wishInput.value.trim();
+                if (wish) {
+                    showWishAnimation(wish, gameOverScreen);
+                } else {
+                    wishInput.style.borderColor = '#ef4444';
+                    setTimeout(() => {
+                        wishInput.style.borderColor = color;
+                    }, 300);
+                }
+            };
+
+            submitBtn.addEventListener('click', submitWish);
+            wishInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') submitWish();
+            });
+
+            restartBtn.addEventListener('click', () => {
+                gameOverScreen.remove();
+                initGame();
+            });
+        }, 100);
+    }
+
+    // 소원 애니메이션
+    function showWishAnimation(wish, gameOverScreen) {
+        const wishElement = document.createElement('div');
+        wishElement.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: ${color};
+            font-weight: 600;
+            opacity: 1;
+            transition: all 2s ease-out;
+            pointer-events: none;
+            white-space: nowrap;
+        `;
+        wishElement.textContent = `"${wish}"`;
+        gameOverScreen.appendChild(wishElement);
+
+        setTimeout(() => {
+            wishElement.style.transform = 'translate(-50%, -200%)';
+            wishElement.style.opacity = '0';
+        }, 100);
+
+        setTimeout(() => {
+            gameOverScreen.innerHTML = `
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✨</div>
+                <div style="font-size: 1.2rem; color: ${color}; margin-bottom: 1.5rem;">
+                    소원이 하늘로 올라갔습니다
+                </div>
+                <button id="restart-game2" style="padding: 0.75rem 2rem; background: ${color};
+                        color: white; border: none; border-radius: 8px; font-size: 1rem;
+                        font-weight: 600; cursor: pointer;">
+                    다시 쌓기
+                </button>
+            `;
+
+            setTimeout(() => {
+                document.getElementById('restart-game2').addEventListener('click', () => {
+                    gameOverScreen.remove();
+                    initGame();
+                });
+            }, 100);
+        }, 2000);
+    }
+
+    // 게임 루프
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 배경 장식 (구름)
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.beginPath();
+        ctx.arc(100, 80, 30, 0, Math.PI * 2);
+        ctx.arc(130, 75, 35, 0, Math.PI * 2);
+        ctx.arc(160, 80, 30, 0, Math.PI * 2);
+        ctx.fill();
+
+        // 쌓인 돌들 그리기
+        gameState.stones.forEach(stone => stone.draw(ctx));
+
+        // 현재 움직이는 돌
+        if (gameState.currentStone && !gameState.isGameOver) {
+            // 좌우 움직임
+            gameState.currentStone.x += gameState.stoneSpeed * gameState.stoneDirection;
+
+            if (gameState.currentStone.x - gameState.currentStone.width / 2 <= 0 ||
+                gameState.currentStone.x + gameState.currentStone.width / 2 >= canvas.width) {
+                gameState.stoneDirection *= -1;
+            }
+
+            gameState.currentStone.draw(ctx);
+        }
+
+        if (!gameState.isGameOver) {
+            gameState.animationId = requestAnimationFrame(gameLoop);
+        }
+    }
+
+    // 클릭 이벤트
+    canvas.addEventListener('click', dropStone);
+
+    modal.querySelector('.game-modal-body').appendChild(content);
+    document.body.appendChild(modal);
+    setTimeout(() => {
+        modal.classList.add('show');
+        initGame();
+    }, 10);
+}
+
 console.log('✅ Wisdom Library 미니 게임 로드 완료');
