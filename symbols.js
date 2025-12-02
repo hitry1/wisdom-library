@@ -30,12 +30,16 @@ function openSixArtsModal() {
     const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     centerCircle.setAttribute('cx', '200');
     centerCircle.setAttribute('cy', '200');
-    centerCircle.setAttribute('r', '50');
+    centerCircle.setAttribute('r', '70');
     centerCircle.setAttribute('fill', '#8b0000');
     centerCircle.setAttribute('opacity', '0.2');
+    centerCircle.style.transition = 'all 0.3s ease';
     svg.appendChild(centerCircle);
 
-    // 중심 텍스트
+    // 중심 텍스트 그룹
+    const centerTextGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+    // 기본 중심 텍스트 (六藝)
     const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     centerText.setAttribute('x', '200');
     centerText.setAttribute('y', '210');
@@ -44,7 +48,41 @@ function openSixArtsModal() {
     centerText.setAttribute('font-size', '32');
     centerText.setAttribute('font-weight', 'bold');
     centerText.textContent = '六藝';
-    svg.appendChild(centerText);
+    centerText.style.transition = 'opacity 0.3s ease';
+    centerTextGroup.appendChild(centerText);
+
+    // 호버 시 표시될 텍스트들
+    const hoverIcon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    hoverIcon.setAttribute('x', '200');
+    hoverIcon.setAttribute('y', '185');
+    hoverIcon.setAttribute('text-anchor', 'middle');
+    hoverIcon.setAttribute('font-size', '28');
+    hoverIcon.style.opacity = '0';
+    hoverIcon.style.transition = 'opacity 0.3s ease';
+    centerTextGroup.appendChild(hoverIcon);
+
+    const hoverName = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    hoverName.setAttribute('x', '200');
+    hoverName.setAttribute('y', '210');
+    hoverName.setAttribute('text-anchor', 'middle');
+    hoverName.setAttribute('fill', '#8b0000');
+    hoverName.setAttribute('font-size', '20');
+    hoverName.setAttribute('font-weight', 'bold');
+    hoverName.style.opacity = '0';
+    hoverName.style.transition = 'opacity 0.3s ease';
+    centerTextGroup.appendChild(hoverName);
+
+    const hoverDesc = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    hoverDesc.setAttribute('x', '200');
+    hoverDesc.setAttribute('y', '230');
+    hoverDesc.setAttribute('text-anchor', 'middle');
+    hoverDesc.setAttribute('fill', '#666');
+    hoverDesc.setAttribute('font-size', '14');
+    hoverDesc.style.opacity = '0';
+    hoverDesc.style.transition = 'opacity 0.3s ease';
+    centerTextGroup.appendChild(hoverDesc);
+
+    svg.appendChild(centerTextGroup);
 
     // 6개의 육예 요소
     arts.forEach((art, index) => {
@@ -77,18 +115,48 @@ function openSixArtsModal() {
 
         // 호버 효과
         circle.addEventListener('mouseenter', () => {
+            // 원 확대 및 강조
             circle.setAttribute('r', '45');
             circle.setAttribute('fill', art.color);
             circle.setAttribute('fill-opacity', '0.1');
             line.setAttribute('stroke-width', '4');
             line.setAttribute('opacity', '0.8');
+
+            // 중심 원 확대 및 색상 변경
+            centerCircle.setAttribute('r', '75');
+            centerCircle.setAttribute('fill', art.color);
+
+            // 기본 텍스트 숨기기
+            centerText.style.opacity = '0';
+
+            // 호버 정보 표시
+            hoverIcon.textContent = art.icon;
+            hoverName.textContent = `${art.name} (${art.nameKo})`;
+            hoverDesc.textContent = art.desc;
+            hoverIcon.style.opacity = '1';
+            hoverName.style.opacity = '1';
+            hoverDesc.style.opacity = '1';
+            hoverName.setAttribute('fill', art.color);
         });
 
         circle.addEventListener('mouseleave', () => {
+            // 원 복원
             circle.setAttribute('r', '40');
             circle.setAttribute('fill', 'white');
             line.setAttribute('stroke-width', '2');
             line.setAttribute('opacity', '0.3');
+
+            // 중심 원 복원
+            centerCircle.setAttribute('r', '70');
+            centerCircle.setAttribute('fill', '#8b0000');
+
+            // 기본 텍스트 표시
+            centerText.style.opacity = '1';
+
+            // 호버 정보 숨기기
+            hoverIcon.style.opacity = '0';
+            hoverName.style.opacity = '0';
+            hoverDesc.style.opacity = '0';
         });
 
         svg.appendChild(circle);
@@ -102,15 +170,55 @@ function openSixArtsModal() {
         text.setAttribute('font-size', '28');
         text.setAttribute('font-weight', 'bold');
         text.textContent = art.name;
-        text.style.pointerEvents = 'none';
+        text.style.cursor = 'pointer';
+        text.style.transition = 'all 0.3s ease';
+
+        // 텍스트에도 같은 호버 효과 추가
+        text.addEventListener('mouseenter', () => {
+            circle.setAttribute('r', '45');
+            circle.setAttribute('fill', art.color);
+            circle.setAttribute('fill-opacity', '0.1');
+            line.setAttribute('stroke-width', '4');
+            line.setAttribute('opacity', '0.8');
+            centerCircle.setAttribute('r', '75');
+            centerCircle.setAttribute('fill', art.color);
+            centerText.style.opacity = '0';
+            hoverIcon.textContent = art.icon;
+            hoverName.textContent = `${art.name} (${art.nameKo})`;
+            hoverDesc.textContent = art.desc;
+            hoverIcon.style.opacity = '1';
+            hoverName.style.opacity = '1';
+            hoverDesc.style.opacity = '1';
+            hoverName.setAttribute('fill', art.color);
+        });
+
+        text.addEventListener('mouseleave', () => {
+            circle.setAttribute('r', '40');
+            circle.setAttribute('fill', 'white');
+            line.setAttribute('stroke-width', '2');
+            line.setAttribute('opacity', '0.3');
+            centerCircle.setAttribute('r', '70');
+            centerCircle.setAttribute('fill', '#8b0000');
+            centerText.style.opacity = '1';
+            hoverIcon.style.opacity = '0';
+            hoverName.style.opacity = '0';
+            hoverDesc.style.opacity = '0';
+        });
+
         svg.appendChild(text);
     });
 
     content.appendChild(svg);
 
+    // 안내 메시지
+    const helpText = document.createElement('div');
+    helpText.style.cssText = 'text-align: center; color: #666; font-size: 0.9rem; margin-top: 1rem; padding: 0.5rem;';
+    helpText.innerHTML = '💡 각 육예에 마우스를 올려보세요';
+    content.appendChild(helpText);
+
     // 설명 추가
     const description = document.createElement('div');
-    description.style.cssText = 'margin-top: 2rem; padding: 0 1rem;';
+    description.style.cssText = 'margin-top: 1.5rem; padding: 0 1rem;';
     const descGrid = document.createElement('div');
     descGrid.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;';
 
