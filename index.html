@@ -140,6 +140,7 @@
     <script src="lazy-loading.js" defer></script>
     <script src="search-feature.js" defer></script>
     <script src="symbols.js" defer></script>
+    <script src="games.js" defer></script>
 
     <!-- 3D Model Viewer -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
@@ -282,6 +283,34 @@
                             <div class="gallery-item-info">
                                 <h3 class="gallery-item-title" data-ko="공묘 (孔廟)" data-en="Confucius Temple">공묘 (孔廟)</h3>
                                 <p class="gallery-item-desc" data-ko="공자를 모신 사당, 중국 곡부의 대성전" data-en="Temple dedicated to Confucius in Qufu, China">공자를 모신 사당, 중국 곡부의 대성전</p>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item" data-item="daily-wisdom" onclick="openDailyWisdomGame('confucius')" style="cursor: pointer;">
+                            <div class="gallery-item-image">
+                                <div class="gallery-item-icon">📜</div>
+                                <span class="gallery-badge" data-ko="게임" data-en="Game">게임</span>
+                            </div>
+                            <div class="gallery-item-info">
+                                <h3 class="gallery-item-title" data-ko="오늘의 지혜" data-en="Daily Wisdom">오늘의 지혜</h3>
+                                <p class="gallery-item-desc" data-ko="논어에서 무작위로 명언을 뽑아보세요" data-en="Draw a random quote from the Analects">논어에서 무작위로 명언을 뽑아보세요</p>
+                                <p style="font-size: 0.9rem; color: #8b0000; margin-top: 0.5rem; font-weight: 500;">
+                                    <span data-ko="🎲 지혜 뽑기" data-en="🎲 Draw Wisdom">🎲 지혜 뽑기</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item" data-item="idiom-game" onclick="openIdiomMatchingGame()" style="cursor: pointer;">
+                            <div class="gallery-item-image">
+                                <div class="gallery-item-icon">🎴</div>
+                                <span class="gallery-badge" data-ko="게임" data-en="Game">게임</span>
+                            </div>
+                            <div class="gallery-item-info">
+                                <h3 class="gallery-item-title" data-ko="사자성어 짝 맞추기" data-en="Idiom Matching">사자성어 짝 맞추기</h3>
+                                <p class="gallery-item-desc" data-ko="사자성어와 뜻을 연결하는 메모리 게임" data-en="Memory game matching idioms with meanings">사자성어와 뜻을 연결하는 메모리 게임</p>
+                                <p style="font-size: 0.9rem; color: #8b0000; margin-top: 0.5rem; font-weight: 500;">
+                                    <span data-ko="🎮 게임 시작" data-en="🎮 Start Game">🎮 게임 시작</span>
+                                </p>
                             </div>
                         </div>
 
@@ -952,6 +981,20 @@
                             </div>
                         </div>
 
+                        <div class="gallery-item" data-item="daily-wisdom-laozi" onclick="openDailyWisdomGame('laozi')" style="cursor: pointer;">
+                            <div class="gallery-item-image">
+                                <div class="gallery-item-icon">📜</div>
+                                <span class="gallery-badge" data-ko="게임" data-en="Game">게임</span>
+                            </div>
+                            <div class="gallery-item-info">
+                                <h3 class="gallery-item-title" data-ko="오늘의 지혜" data-en="Daily Wisdom">오늘의 지혜</h3>
+                                <p class="gallery-item-desc" data-ko="도덕경에서 무작위로 명언을 뽑아보세요" data-en="Draw a random quote from Tao Te Ching">도덕경에서 무작위로 명언을 뽑아보세요</p>
+                                <p style="font-size: 0.9rem; color: #2563eb; margin-top: 0.5rem; font-weight: 500;">
+                                    <span data-ko="🎲 지혜 뽑기" data-en="🎲 Draw Wisdom">🎲 지혜 뽑기</span>
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="gallery-item" data-item="tao-symbols" onclick="openTaoSymbolsModal()" style="cursor: pointer;">
                             <div class="gallery-item-image">
                                 <div class="gallery-item-icon">🌊</div>
@@ -1497,6 +1540,20 @@
                             <div class="gallery-item-info">
                                 <h3 class="gallery-item-title" data-ko="팔만대장경 (八萬大藏經)" data-en="Tripitaka Koreana">팔만대장경 (八萬大藏經)</h3>
                                 <p class="gallery-item-desc" data-ko="고려시대 제작된 불교 경전의 집대성, 유네스코 세계기록유산" data-en="Complete Buddhist scriptures from Goryeo Dynasty, UNESCO Memory of the World">고려시대 제작된 불교 경전의 집대성, 유네스코 세계기록유산</p>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item" data-item="daily-wisdom-buddha" onclick="openDailyWisdomGame('buddha')" style="cursor: pointer;">
+                            <div class="gallery-item-image">
+                                <div class="gallery-item-icon">📜</div>
+                                <span class="gallery-badge" data-ko="게임" data-en="Game">게임</span>
+                            </div>
+                            <div class="gallery-item-info">
+                                <h3 class="gallery-item-title" data-ko="오늘의 지혜" data-en="Daily Wisdom">오늘의 지혜</h3>
+                                <p class="gallery-item-desc" data-ko="법구경에서 무작위로 명언을 뽑아보세요" data-en="Draw a random quote from Dhammapada">법구경에서 무작위로 명언을 뽑아보세요</p>
+                                <p style="font-size: 0.9rem; color: #d97706; margin-top: 0.5rem; font-weight: 500;">
+                                    <span data-ko="🎲 지혜 뽑기" data-en="🎲 Draw Wisdom">🎲 지혜 뽑기</span>
+                                </p>
                             </div>
                         </div>
 
