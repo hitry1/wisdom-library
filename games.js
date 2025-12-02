@@ -40,14 +40,14 @@ const buddhaQuotes = [
 
 // 사자성어 데이터
 const idioms = [
-    { id: 1, word: '溫故知新', meaning: '옛것을 익혀 새것을 앎' },
-    { id: 2, word: '大器晩成', meaning: '큰 그릇은 늦게 이루어짐' },
-    { id: 3, word: '苦盡甘來', meaning: '고생 끝에 낙이 옴' },
-    { id: 4, word: '一石二鳥', meaning: '돌 하나로 새 두 마리를 잡음' },
-    { id: 5, word: '臥薪嘗膽', meaning: '장작 위에 누워 쓸개를 맛봄' },
-    { id: 6, word: '刻舟求劍', meaning: '배에 새겨 칼을 구함' },
-    { id: 7, word: '指鹿為馬', meaning: '사슴을 가리켜 말이라 함' },
-    { id: 8, word: '井中之蛙', meaning: '우물 안 개구리' }
+    { id: 1, word: '溫故知新', pronunciation: '온고지신', meaning: '옛것을 익혀 새것을 앎' },
+    { id: 2, word: '大器晩成', pronunciation: '대기만성', meaning: '큰 그릇은 늦게 이루어짐' },
+    { id: 3, word: '苦盡甘來', pronunciation: '고진감래', meaning: '고생 끝에 낙이 옴' },
+    { id: 4, word: '一石二鳥', pronunciation: '일석이조', meaning: '돌 하나로 새 두 마리를 잡음' },
+    { id: 5, word: '臥薪嘗膽', pronunciation: '와신상담', meaning: '장작 위에 누워 쓸개를 맛봄' },
+    { id: 6, word: '刻舟求劍', pronunciation: '각주구검', meaning: '배에 새겨 칼을 구함' },
+    { id: 7, word: '指鹿為馬', pronunciation: '지록위마', meaning: '사슴을 가리켜 말이라 함' },
+    { id: 8, word: '井中之蛙', pronunciation: '정중지와', meaning: '우물 안 개구리' }
 ];
 
 // ===== 오늘의 지혜 게임 =====
@@ -173,9 +173,19 @@ function openDailyWisdomGame(philosopher) {
         rerollBtn.style.boxShadow = 'none';
     });
 
+    // 이전 명언 인덱스 저장
+    let lastQuoteIndex = -1;
+
     // 명언 뽑기 함수
     function drawQuote() {
-        const randomQuote = quoteData[Math.floor(Math.random() * quoteData.length)];
+        let randomIndex;
+        // 이전과 다른 명언이 나올 때까지 반복
+        do {
+            randomIndex = Math.floor(Math.random() * quoteData.length);
+        } while (randomIndex === lastQuoteIndex && quoteData.length > 1);
+
+        lastQuoteIndex = randomIndex;
+        const randomQuote = quoteData[randomIndex];
 
         // 책 애니메이션
         bookContainer.style.transform = 'rotateY(90deg)';
@@ -249,7 +259,7 @@ function openIdiomMatchingGame() {
     const cards = [];
 
     gameIdioms.forEach(idiom => {
-        cards.push({ id: idiom.id, type: 'word', content: idiom.word, pairId: idiom.id });
+        cards.push({ id: idiom.id, type: 'word', content: idiom.word, pronunciation: idiom.pronunciation, pairId: idiom.id });
         cards.push({ id: idiom.id, type: 'meaning', content: idiom.meaning, pairId: idiom.id });
     });
 
@@ -325,6 +335,7 @@ function openIdiomMatchingGame() {
             backface-visibility: hidden;
             transform: rotateY(180deg);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background: white;
@@ -332,7 +343,22 @@ function openIdiomMatchingGame() {
             color: ${cardData.type === 'word' ? color : '#333'};
             padding: 0.5rem;
         `;
-        cardFront.textContent = cardData.content;
+
+        // 한자 카드인 경우 한자와 발음 모두 표시
+        if (cardData.type === 'word' && cardData.pronunciation) {
+            const hanjaText = document.createElement('div');
+            hanjaText.style.cssText = 'font-size: 1rem; font-weight: bold; margin-bottom: 0.25rem;';
+            hanjaText.textContent = cardData.content;
+
+            const pronunciationText = document.createElement('div');
+            pronunciationText.style.cssText = 'font-size: 0.75rem; color: #666;';
+            pronunciationText.textContent = `(${cardData.pronunciation})`;
+
+            cardFront.appendChild(hanjaText);
+            cardFront.appendChild(pronunciationText);
+        } else {
+            cardFront.textContent = cardData.content;
+        }
 
         card.appendChild(cardBack);
         card.appendChild(cardFront);
