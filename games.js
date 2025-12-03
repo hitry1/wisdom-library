@@ -119,9 +119,11 @@ function openDailyWisdomGame(philosopher) {
     quoteDisplay.id = 'quote-display';
     quoteDisplay.style.cssText = 'opacity: 0; transition: opacity 0.5s ease; margin-top: 2rem;';
 
+    const isMobile = window.innerWidth <= 480;
+
     const quoteHanja = document.createElement('div');
     quoteHanja.style.cssText = `
-        font-size: 1.5rem;
+        font-size: ${isMobile ? '1.2rem' : '1.5rem'};
         font-weight: 600;
         color: ${color};
         margin-bottom: 1.5rem;
@@ -131,7 +133,7 @@ function openDailyWisdomGame(philosopher) {
 
     const quoteMeaning = document.createElement('div');
     quoteMeaning.style.cssText = `
-        font-size: 1.1rem;
+        font-size: ${isMobile ? '1rem' : '1.1rem'};
         color: #333;
         margin-bottom: 1rem;
         line-height: 1.6;
@@ -139,7 +141,7 @@ function openDailyWisdomGame(philosopher) {
 
     const quoteOrigin = document.createElement('div');
     quoteOrigin.style.cssText = `
-        font-size: 0.9rem;
+        font-size: ${isMobile ? '0.85rem' : '0.9rem'};
         color: #666;
         font-style: italic;
     `;
@@ -153,25 +155,39 @@ function openDailyWisdomGame(philosopher) {
     rerollBtn.textContent = '다시 뽑기';
     rerollBtn.style.cssText = `
         margin-top: 2rem;
-        padding: 0.75rem 2rem;
+        padding: ${isMobile ? '1rem 2rem' : '0.75rem 2rem'};
         background: ${color};
         color: white;
         border: none;
         border-radius: 8px;
-        font-size: 1rem;
+        font-size: ${isMobile ? '1.1rem' : '1rem'};
         font-weight: 600;
         cursor: pointer;
         opacity: 0;
         transition: all 0.3s ease;
+        min-height: 44px;
+        min-width: ${isMobile ? '200px' : 'auto'};
     `;
-    rerollBtn.addEventListener('mouseenter', () => {
-        rerollBtn.style.transform = 'translateY(-2px)';
-        rerollBtn.style.boxShadow = `0 4px 12px ${color}50`;
-    });
-    rerollBtn.addEventListener('mouseleave', () => {
-        rerollBtn.style.transform = 'translateY(0)';
-        rerollBtn.style.boxShadow = 'none';
-    });
+
+    // 데스크톱 호버 효과 (모바일에서는 비활성화)
+    if (!isMobile) {
+        rerollBtn.addEventListener('mouseenter', () => {
+            rerollBtn.style.transform = 'translateY(-2px)';
+            rerollBtn.style.boxShadow = `0 4px 12px ${color}50`;
+        });
+        rerollBtn.addEventListener('mouseleave', () => {
+            rerollBtn.style.transform = 'translateY(0)';
+            rerollBtn.style.boxShadow = 'none';
+        });
+    } else {
+        // 모바일 터치 피드백
+        rerollBtn.addEventListener('touchstart', () => {
+            rerollBtn.style.transform = 'scale(0.95)';
+        });
+        rerollBtn.addEventListener('touchend', () => {
+            rerollBtn.style.transform = 'scale(1)';
+        });
+    }
 
     // 이전 명언 인덱스 저장
     let lastQuoteIndex = -1;
@@ -272,12 +288,15 @@ function openIdiomMatchingGame() {
     scoreBoard.textContent = `맞춘 개수: ${matchedPairs} / 8`;
     content.appendChild(scoreBoard);
 
-    // 카드 그리드
+    // 카드 그리드 - 모바일 반응형
     const cardGrid = document.createElement('div');
+    const isMobile = window.innerWidth <= 480;
+    const gridColumns = isMobile ? 2 : (window.innerWidth <= 768 ? 3 : 4);
+
     cardGrid.style.cssText = `
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.75rem;
+        grid-template-columns: repeat(${gridColumns}, 1fr);
+        gap: ${isMobile ? '0.5rem' : '0.75rem'};
         max-width: 600px;
         margin: 0 auto;
     `;
@@ -289,6 +308,9 @@ function openIdiomMatchingGame() {
         card.dataset.index = index;
         card.dataset.pairId = cardData.pairId;
         card.dataset.type = cardData.type;
+        const cardFontSize = isMobile ? '0.7rem' : '0.85rem';
+        const cardPadding = isMobile ? '0.3rem' : '0.5rem';
+
         card.style.cssText = `
             aspect-ratio: 1;
             background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
@@ -301,11 +323,12 @@ function openIdiomMatchingGame() {
             transition: all 0.3s ease;
             position: relative;
             transform-style: preserve-3d;
-            font-size: 0.85rem;
+            font-size: ${cardFontSize};
             font-weight: 600;
-            padding: 0.5rem;
+            padding: ${cardPadding};
             text-align: center;
             line-height: 1.4;
+            min-height: 44px;
         `;
 
         // 뒷면
@@ -363,8 +386,8 @@ function openIdiomMatchingGame() {
         card.appendChild(cardBack);
         card.appendChild(cardFront);
 
-        // 카드 클릭 이벤트
-        card.addEventListener('click', () => {
+        // 카드 클릭 및 터치 이벤트
+        const handleCardFlip = () => {
             if (!canFlip || card.classList.contains('flipped') || card.classList.contains('matched')) {
                 return;
             }
@@ -381,6 +404,12 @@ function openIdiomMatchingGame() {
                     checkMatch();
                 }, 800);
             }
+        };
+
+        card.addEventListener('click', handleCardFlip);
+        card.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            handleCardFlip();
         });
 
         card.addEventListener('mouseenter', () => {
@@ -627,13 +656,17 @@ function openStoneTowerGame() {
         animationId: null
     };
 
-    // Canvas 생성
+    // Canvas 생성 - 모바일 대응
     const canvas = document.createElement('canvas');
-    canvas.width = 400;
-    canvas.height = 500;
+    const isMobile = window.innerWidth <= 480;
+    const canvasWidth = isMobile ? Math.min(window.innerWidth - 40, 360) : 400;
+    const canvasHeight = isMobile ? Math.min(canvasWidth * 1.25, 450) : 500;
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
     canvas.style.cssText = `
         width: 100%;
-        max-width: 400px;
+        max-width: ${canvasWidth}px;
         height: auto;
         background: linear-gradient(to bottom, #e0f2fe 0%, #f0f9ff 50%, #fef3c7 100%);
         border-radius: 12px;
@@ -641,6 +674,7 @@ function openStoneTowerGame() {
         cursor: pointer;
         display: block;
         margin: 0 auto;
+        touch-action: none;
     `;
 
     const ctx = canvas.getContext('2d');
@@ -975,8 +1009,12 @@ function openStoneTowerGame() {
         }
     }
 
-    // 클릭 이벤트
+    // 클릭 및 터치 이벤트
     canvas.addEventListener('click', dropStone);
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        dropStone();
+    });
 
     modal.querySelector('.game-modal-body').appendChild(content);
     document.body.appendChild(modal);
