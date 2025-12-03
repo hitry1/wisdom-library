@@ -671,6 +671,105 @@ body {
     }
 }
 
+/* 교수님 논문 출처 강조 */
+.quote-source {
+    margin-top: 1.5rem !important;
+    padding: 1rem !important;
+    background: linear-gradient(135deg, #fff8e1 0%, #fffbf0 100%) !important;
+    border-left: 4px solid #d97706 !important;
+    border-radius: 8px !important;
+    font-size: 0.95rem !important;
+}
+
+.quote-source cite {
+    font-style: normal !important;
+    font-weight: 500 !important;
+    color: #1a1a1a !important;
+}
+
+.quote-source cite::before {
+    content: "📚 " !important;
+    margin-right: 0.5rem !important;
+}
+
+/* 참고문헌 섹션 강조 */
+.kim-duksam-section {
+    background: linear-gradient(135deg, #fef3c7 0%, #fef9e7 100%) !important;
+    padding: 2rem !important;
+    border-radius: 16px !important;
+    margin-top: 2rem !important;
+    border: 2px solid #d97706 !important;
+}
+
+.kim-duksam-section .ref-category-title {
+    color: #d97706 !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.kim-duksam-section .ref-category-title::before {
+    content: "👨‍🏫 " !important;
+    margin-right: 0.5rem !important;
+}
+
+.scholar-profile {
+    background: white !important;
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
+    margin-bottom: 1.5rem !important;
+    border-left: 4px solid #d97706 !important;
+}
+
+.scholar-info strong {
+    font-size: 1.2rem !important;
+    color: #d97706 !important;
+}
+
+.citation-note {
+    margin-top: 0.75rem !important;
+    padding: 1rem !important;
+    background: #f0fdf4 !important;
+    border-left: 3px solid #10b981 !important;
+    border-radius: 6px !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+}
+
+.citation-impact {
+    margin-top: 1.5rem !important;
+    padding: 1.5rem !important;
+    background: white !important;
+    border-radius: 12px !important;
+    border: 2px dashed #d97706 !important;
+}
+
+.citation-impact p {
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+    color: #374151 !important;
+}
+
+/* 모바일에서 논문 출처 최적화 */
+@media screen and (max-width: 768px) {
+    .quote-source {
+        font-size: 0.85rem !important;
+        padding: 0.75rem !important;
+    }
+
+    .kim-duksam-section {
+        padding: 1.5rem 1rem !important;
+    }
+
+    .scholar-info strong {
+        font-size: 1.1rem !important;
+    }
+
+    .citation-note {
+        font-size: 0.85rem !important;
+        padding: 0.75rem !important;
+    }
+}
+
 /* 성능 최적화 - 애니메이션 감소 */
 @media screen and (max-width: 768px) and (prefers-reduced-motion: reduce) {
     * {
