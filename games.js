@@ -658,26 +658,64 @@ function openStoneTowerGame() {
 
     // Canvas 생성 - 모바일 대응
     const canvas = document.createElement('canvas');
-    const isMobile = window.innerWidth <= 480;
-    const canvasWidth = isMobile ? Math.min(window.innerWidth - 40, 360) : 400;
-    const canvasHeight = isMobile ? Math.min(canvasWidth * 1.25, 450) : 500;
-
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
-    canvas.style.cssText = `
-        width: 100%;
-        max-width: ${canvasWidth}px;
-        height: auto;
-        background: linear-gradient(to bottom, #e0f2fe 0%, #f0f9ff 50%, #fef3c7 100%);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        cursor: pointer;
-        display: block;
-        margin: 0 auto;
-        touch-action: none;
-    `;
-
     const ctx = canvas.getContext('2d');
+
+    // Canvas 크기 설정 함수
+    function setCanvasSize() {
+        const isMobile = window.innerWidth <= 480;
+        const isPortrait = window.innerHeight > window.innerWidth;
+
+        let canvasWidth, canvasHeight;
+
+        if (isMobile) {
+            if (isPortrait) {
+                // 세로 모드
+                canvasWidth = Math.min(window.innerWidth - 40, 360);
+                canvasHeight = Math.min(canvasWidth * 1.4, 500);
+            } else {
+                // 가로 모드
+                canvasWidth = Math.min(window.innerWidth * 0.5, 400);
+                canvasHeight = Math.min(window.innerHeight * 0.6, 400);
+            }
+        } else {
+            canvasWidth = 400;
+            canvasHeight = 500;
+        }
+
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        canvas.style.cssText = `
+            width: 100%;
+            max-width: ${canvasWidth}px;
+            height: auto;
+            background: linear-gradient(to bottom, #e0f2fe 0%, #f0f9ff 50%, #fef3c7 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            touch-action: none;
+        `;
+    }
+
+    setCanvasSize();
+
+    // 화면 회전 감지 및 재조정
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            setCanvasSize();
+            if (!gameState.isGameOver) {
+                // 게임 재시작
+                initGame();
+            }
+        }, 100);
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            setCanvasSize();
+        }
+    });
 
     // 점수 표시
     const scoreDisplay = document.createElement('div');
@@ -1009,11 +1047,22 @@ function openStoneTowerGame() {
         }
     }
 
-    // 클릭 및 터치 이벤트
-    canvas.addEventListener('click', dropStone);
-    canvas.addEventListener('touchstart', (e) => {
+    // 클릭 및 터치 이벤트 - 중복 방지
+    let touchHandled = false;
+
+    canvas.addEventListener('touchend', (e) => {
         e.preventDefault();
+        touchHandled = true;
         dropStone();
+        setTimeout(() => {
+            touchHandled = false;
+        }, 300);
+    }, { passive: false });
+
+    canvas.addEventListener('click', (e) => {
+        if (!touchHandled) {
+            dropStone();
+        }
     });
 
     modal.querySelector('.game-modal-body').appendChild(content);

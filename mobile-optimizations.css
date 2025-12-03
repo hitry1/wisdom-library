@@ -298,15 +298,93 @@
     }
 }
 
-/* 가로 모드 최적화 */
-@media screen and (max-height: 500px) and (orientation: landscape) {
+/* 세로 모드 (Portrait) 최적화 */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    body {
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
     .modal, .game-modal {
-        max-height: 95vh !important;
+        width: 95% !important;
+        max-height: 85vh !important;
         overflow-y: auto !important;
     }
 
+    .game-modal-content {
+        max-height: 85vh !important;
+    }
+
+    /* Canvas 세로 모드 최적화 */
+    canvas {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* 게임 컨트롤 */
+    button {
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 0.5rem auto !important;
+        display: block !important;
+    }
+}
+
+/* 가로 모드 (Landscape) 최적화 */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    .modal, .game-modal {
+        max-height: 95vh !important;
+        overflow-y: auto !important;
+        width: 85% !important;
+    }
+
+    .game-modal-content {
+        max-height: 95vh !important;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .game-modal-header {
+        width: 100%;
+        padding: 1rem !important;
+    }
+
+    .game-modal-body {
+        width: 100%;
+        max-height: calc(95vh - 100px);
+        overflow-y: auto;
+    }
+
     .hero-section {
-        padding: 2rem 1rem !important;
+        padding: 1.5rem 1rem !important;
+    }
+
+    .section {
+        padding: 1.5rem 1rem !important;
+    }
+
+    /* Canvas 가로 모드 최적화 */
+    canvas {
+        max-height: 60vh !important;
+        width: auto !important;
+        margin: 0 auto;
+    }
+}
+
+/* 매우 작은 세로 화면 */
+@media screen and (max-width: 360px) and (orientation: portrait) {
+    html {
+        font-size: 13px;
+    }
+
+    .game-modal-header h2 {
+        font-size: 1.2rem !important;
+    }
+
+    .gallery-item-icon {
+        font-size: 1.5rem !important;
     }
 }
 
