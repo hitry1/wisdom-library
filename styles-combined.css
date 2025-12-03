@@ -2528,20 +2528,32 @@ html {
     .share-buttons {
         position: fixed;
         bottom: 80px;
-        right: 20px;
+        right: 15px;
         left: auto;
         top: auto;
         transform: none;
         flex-direction: row;
         background: white;
-        padding: 0.5rem;
-        border-radius: 30px;
+        padding: 0.4rem;
+        border-radius: 25px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        gap: 0.5rem;
     }
 
     .share-btn {
-        width: 38px;
-        height: 38px;
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        position: relative;
+    }
+
+    .share-btn::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: -6px;
+        right: -6px;
+        bottom: -6px;
     }
 }
 
@@ -2678,11 +2690,12 @@ html {
     }
 
     .scroll-to-top {
-        bottom: 15px;
-        right: 15px;
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -3495,9 +3508,11 @@ html {
     .bookmark-btn {
         top: 0.5rem;
         right: 0.5rem;
-        width: 28px;
-        height: 28px;
-        font-size: 0.95rem;
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+        padding: 0.4rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 
     /* Optimize video performance */
@@ -3540,7 +3555,26 @@ html {
 
     /* Smooth bookmark button interaction */
     .bookmark-btn:active {
-        transform: scale(0.85);
+        transform: scale(0.9);
+    }
+
+    /* 터치 영역 개선 */
+    .bookmark-btn::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+    }
+
+    .scroll-to-top::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
     }
 
     /* Navigation bar sticky behavior */
@@ -5457,27 +5491,24 @@ html {
     /* 교수님 강의 영상 모바일 */
     .teaching-with-quotes-layout {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .teaching-image-container {
         width: 100%;
-        max-width: 300px;
-        margin: 2rem auto 0;
-        border-radius: 2.5rem;
+        max-width: 280px;
+        margin: 1.5rem auto 0;
+        border-radius: 2rem;
     }
 
     .professor-teaching-video {
-        height: 300px;
-        border-radius: 2.5rem;
-        transform: scale(1.2);
+        height: 250px;
+        border-radius: 2rem;
+        transform: scale(1.15);
     }
 
     .pointer-decoration {
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 2rem;
+        display: none;
     }
 
     .teaching-title {
@@ -5486,5 +5517,199 @@ html {
 
     .teaching-desc {
         font-size: 0.95rem;
+    }
+
+    /* 교수님 프로필 섹션 모바일 최적화 */
+    .professor-profile-section {
+        margin: 2rem 0;
+        padding: 1rem 0;
+    }
+
+    .professor-profile-card {
+        padding: 1.25rem 1rem;
+        border-radius: 1.5rem;
+    }
+
+    .professor-quote-bubble {
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+    }
+
+    .professor-main-quote {
+        font-size: 1.1rem;
+        line-height: 1.65;
+    }
+
+    .quote-decoration {
+        font-size: 2.5rem;
+        left: 1rem;
+    }
+
+    .view-profile-btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.85rem;
+        margin-top: 1rem;
+    }
+
+    /* 모달 모바일 최적화 */
+    .modal-content-wrapper {
+        max-width: 95%;
+        max-height: 90vh;
+        margin: 0 auto;
+    }
+
+    .modal-header-gradient {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .modal-header-text {
+        text-align: center;
+    }
+
+    .modal-professor-name {
+        font-size: 1.5rem;
+    }
+
+    .modal-professor-title {
+        font-size: 0.9rem;
+    }
+
+    .modal-professor-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .modal-intro-box {
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .modal-intro-text {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .modal-info-item {
+        padding: 0.65rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.65rem;
+    }
+
+    .modal-info-item svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .modal-info-title {
+        font-size: 0.7rem;
+        margin-bottom: 0.85rem;
+    }
+
+    /* E-Book 모바일 최적화 */
+    .ebook-container {
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .ebook-book {
+        max-width: 100%;
+    }
+
+    .ebook-page {
+        padding: 1.5rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .ebook-close-btn {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 36px;
+        height: 36px;
+    }
+
+    .ebook-language-toggle {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .lang-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .ebook-navigation {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .page-indicator {
+        font-size: 0.9rem;
+    }
+
+    /* 논어 E-Book 모바일 */
+    .analects-chapter-title {
+        font-size: 1.25rem;
+    }
+
+    .analects-original-text {
+        font-size: 1rem;
+    }
+
+    .analects-translation {
+        font-size: 0.9rem;
+    }
+
+    .analects-explanation {
+        font-size: 0.85rem;
+    }
+
+    /* 갤러리 아이템 모바일 최적화 */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .gallery-item {
+        padding: 1rem;
+    }
+
+    .gallery-item-icon {
+        font-size: 2rem;
+    }
+
+    .gallery-item-title {
+        font-size: 1.1rem;
+    }
+
+    .gallery-item-desc {
+        font-size: 0.85rem;
+    }
+
+    /* 섹션 타이틀 모바일 */
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* 컨테이너 모바일 여백 */
+    .container {
+        padding: 0 1rem;
+    }
+
+    .section {
+        padding: 2rem 0;
     }
 }
