@@ -1,0 +1,478 @@
+/* ===================================
+   고퀄리티 디자인 개선
+   ================================== */
+
+/* 향상된 타이포그래피 */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 향상된 카드 디자인 */
+.gallery-item,
+.quote-card,
+.quote-card-academic,
+.anecdote-item {
+    background: white;
+    border-radius: 20px;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.05),
+        0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item::before,
+.quote-card::before,
+.quote-card-academic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover,
+.quote-card:hover,
+.quote-card-academic:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.07),
+        0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-item:hover::before,
+.quote-card:hover::before,
+.quote-card-academic:hover::before {
+    opacity: 1;
+}
+
+/* 향상된 버튼 디자인 */
+button,
+.btn,
+.cta-button,
+.nav-tab {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button::before,
+.btn::before,
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before,
+.btn:hover::before,
+.cta-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* 향상된 그라데이션 */
+.hero-modern {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.gradient-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+/* 향상된 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.gallery-item {
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+.gallery-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* 향상된 스크롤바 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+}
+
+/* 향상된 인용구 스타일 */
+blockquote {
+    position: relative;
+    padding-left: 2rem;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+blockquote::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 4rem;
+    font-family: Georgia, serif;
+    color: var(--accent);
+    opacity: 0.3;
+    line-height: 1;
+}
+
+/* 향상된 배지 디자인 */
+.gallery-badge,
+.character-badge {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 10px rgba(201, 169, 97, 0.3);
+}
+
+/* 향상된 이미지 컨테이너 */
+.gallery-item-image,
+.hero-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item-image::after,
+.hero-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-image::after {
+    opacity: 1;
+}
+
+/* 향상된 섹션 배경 */
+.section {
+    position: relative;
+    background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
+}
+
+/* 향상된 호버 효과 - 아이콘 */
+.gallery-item-icon,
+.quote-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.gallery-item:hover .gallery-item-icon,
+.quote-card:hover .quote-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* 향상된 링크 스타일 */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+    transition: width 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-light);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* 향상된 그리드 레이아웃 */
+.gallery-grid,
+.quotes-grid {
+    gap: 2rem;
+}
+
+/* 향상된 탭 내비게이션 */
+.nav-tab {
+    position: relative;
+}
+
+.nav-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-tab.active::after,
+.nav-tab:hover::after {
+    width: 80%;
+}
+
+/* 향상된 교수님 프로필 카드 */
+.professor-profile-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+    border-radius: 24px;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.05),
+        0 15px 50px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.professor-profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.07),
+        0 25px 70px rgba(0, 0, 0, 0.15);
+}
+
+/* 향상된 인용구 말풍선 */
+.professor-quote-bubble {
+    background: white;
+    border-radius: 20px;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.05),
+        0 10px 40px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.professor-quote-bubble::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 20px 15px 0;
+    border-color: transparent white transparent transparent;
+    filter: drop-shadow(-2px 0 3px rgba(0, 0, 0, 0.1));
+}
+
+/* 향상된 플로팅 버튼 */
+#bookmark-toggle,
+.scroll-to-top {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#bookmark-toggle:hover,
+.scroll-to-top:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(201, 169, 97, 0.4);
+}
+
+#bookmark-toggle:active,
+.scroll-to-top:active {
+    transform: scale(0.95);
+}
+
+/* 향상된 로딩 애니메이션 */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 0%,
+        #f8f8f8 50%,
+        #f0f0f0 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* 향상된 모달 */
+.modal,
+.game-modal {
+    background: white;
+    border-radius: 24px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.1),
+        0 30px 90px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(20px);
+}
+
+/* 향상된 입력 필드 */
+input,
+textarea {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.1);
+    outline: none;
+}
+
+/* 향상된 브랜드 배너 */
+.brand-concept-banner {
+    background: linear-gradient(
+        135deg,
+        rgba(201, 169, 97, 0.1) 0%,
+        rgba(232, 215, 181, 0.1) 100%
+    );
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+/* 부드러운 페이드인 효과 */
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* 반응형 개선 */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .gallery-grid,
+    .quotes-grid {
+        gap: 1.5rem;
+    }
+}
+
+/* 성능 최적화 */
+.gallery-item,
+.quote-card,
+button,
+.nav-tab {
+    will-change: transform;
+}
+
+/* GPU 가속 */
+.hero-background,
+.gradient-overlay {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
