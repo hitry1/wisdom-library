@@ -32,6 +32,22 @@ body {
     }
 }
 
+/* PC에서 원래 레이아웃 유지 */
+@media screen and (min-width: 769px) {
+    .hero-image-container {
+        /* PC에서는 원래 스타일 유지 */
+        display: block !important;
+        position: relative !important;
+    }
+
+    .hero-portrait {
+        /* PC에서는 원래 크기 유지 */
+        width: auto !important;
+        height: auto !important;
+        border-radius: 0 !important;
+    }
+}
+
 /* Hero 섹션 모바일 최적화 */
 @media screen and (max-width: 768px) {
     /* Hero 이미지 컨테이너 모바일 최적화 */
