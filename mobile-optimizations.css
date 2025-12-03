@@ -829,8 +829,7 @@ body {
 }
 
 .teaching-intro-header {
-    text-align: center;
-    margin-bottom: 2rem;
+    display: none;
 }
 
 .teaching-title {
