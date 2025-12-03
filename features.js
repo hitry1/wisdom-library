@@ -10,8 +10,27 @@ class BookmarkManager {
     init() {
         // 북마크 버튼 이벤트 추가
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 BookmarkManager 초기화 시작');
             this.addBookmarkButtons();
             this.renderBookmarkUI();
+            this.updateBookmarkCount();
+
+            // 동적으로 추가되는 콘텐츠를 위해 약간의 지연 후 다시 확인
+            setTimeout(() => {
+                console.log('🔄 북마크 버튼 재확인');
+                this.addBookmarkButtons();
+                this.updateBookmarkButtons();
+            }, 500);
+
+            // MutationObserver로 동적 콘텐츠 감지
+            const observer = new MutationObserver(() => {
+                this.addBookmarkButtons();
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
         });
     }
 
@@ -19,7 +38,12 @@ class BookmarkManager {
     loadBookmarks() {
         try {
             const saved = localStorage.getItem(this.storageKey);
-            return saved ? JSON.parse(saved) : [];
+            const bookmarks = saved ? JSON.parse(saved) : [];
+            console.log('📚 북마크 로드:', bookmarks.length, '개');
+            if (bookmarks.length > 0) {
+                console.log('북마크 목록:', bookmarks.map(b => b.id));
+            }
+            return bookmarks;
         } catch (error) {
             console.error('북마크 로드 실패:', error);
             return [];
@@ -29,8 +53,18 @@ class BookmarkManager {
     // 북마크 저장
     saveBookmarks() {
         try {
-            localStorage.setItem(this.storageKey, JSON.stringify(this.bookmarks));
-            
+            const dataToSave = JSON.stringify(this.bookmarks);
+            localStorage.setItem(this.storageKey, dataToSave);
+
+            // 저장 확인
+            const savedData = localStorage.getItem(this.storageKey);
+            if (savedData === dataToSave) {
+                console.log('✅ 북마크 저장 성공:', this.bookmarks.length, '개');
+            } else {
+                console.error('❌ 북마크 저장 확인 실패');
+                this.showToast('북마크 저장에 실패했습니다', 'error');
+            }
+
             // Service Worker에게 동기화 요청
             if ('serviceWorker' in navigator && 'sync' in navigator.serviceWorker) {
                 navigator.serviceWorker.ready.then(registration => {
@@ -39,6 +73,11 @@ class BookmarkManager {
             }
         } catch (error) {
             console.error('북마크 저장 실패:', error);
+            if (error.name === 'QuotaExceededError') {
+                this.showToast('저장 공간이 부족합니다', 'error');
+            } else {
+                this.showToast('북마크 저장 중 오류가 발생했습니다', 'error');
+            }
         }
     }
 
@@ -217,23 +256,38 @@ class BookmarkManager {
     renderBookmarkUI() {
         // 북마크 패널이 이미 있으면 업데이트만
         let bookmarkPanel = document.getElementById('bookmark-panel');
-        
+
         if (!bookmarkPanel) {
             bookmarkPanel = document.createElement('div');
             bookmarkPanel.id = 'bookmark-panel';
+            bookmarkPanel.className = 'bookmark-panel-hidden';
+
+            // 모바일 감지
+            const isMobile = window.innerWidth <= 768;
+
             bookmarkPanel.style.cssText = `
                 position: fixed;
                 top: 0;
-                right: -400px;
-                width: 400px;
+                right: 0;
+                width: ${isMobile ? '100%' : '400px'};
                 height: 100vh;
                 background: white;
                 box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
-                transition: right 0.3s ease;
+                transition: transform 0.3s ease;
                 z-index: 9998;
                 overflow-y: auto;
-                padding: 2rem;
+                padding: ${isMobile ? '1.5rem 1rem' : '2rem'};
+                transform: translateX(100%);
+                -webkit-overflow-scrolling: touch;
             `;
+
+            // 화면 크기 변경 시 재조정
+            window.addEventListener('resize', () => {
+                const isMobileNow = window.innerWidth <= 768;
+                bookmarkPanel.style.width = isMobileNow ? '100%' : '400px';
+                bookmarkPanel.style.padding = isMobileNow ? '1.5rem 1rem' : '2rem';
+            });
+
             document.body.appendChild(bookmarkPanel);
         }
         
@@ -289,9 +343,9 @@ class BookmarkManager {
     toggleBookmarkPanel() {
         const panel = document.getElementById('bookmark-panel');
         if (panel) {
-            const isOpen = panel.style.right === '0px';
-            panel.style.right = isOpen ? '-400px' : '0px';
-            
+            const isOpen = panel.style.transform === 'translateX(0%)' || panel.style.transform === 'translateX(0px)';
+            panel.style.transform = isOpen ? 'translateX(100%)' : 'translateX(0%)';
+
             if (!isOpen) {
                 this.renderBookmarkUI();
             }
@@ -301,7 +355,7 @@ class BookmarkManager {
     closeBookmarkPanel() {
         const panel = document.getElementById('bookmark-panel');
         if (panel) {
-            panel.style.right = '-400px';
+            panel.style.transform = 'translateX(100%)';
         }
     }
 
