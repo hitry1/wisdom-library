@@ -97,12 +97,12 @@ body {
     }
 
     .character-badge {
-        font-size: 2.5rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 2rem !important;
+        margin-bottom: 0.4rem !important;
     }
 
     .hero-title {
-        font-size: 1.8rem !important;
+        font-size: 1.6rem !important;
         margin-bottom: 0.75rem !important;
     }
 
@@ -128,30 +128,30 @@ body {
         z-index: 100 !important;
         background: rgba(255, 255, 255, 0.95) !important;
         backdrop-filter: blur(10px) !important;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
         padding: 0.5rem 0 !important;
     }
 
     .nav-container {
-        padding: 0 0.5rem !important;
+        padding: 0 0.75rem !important;
         gap: 0.5rem !important;
     }
 
     .nav-tab {
-        padding: 0.75rem 1rem !important;
-        font-size: 0.85rem !important;
-        min-height: 48px !important;
-        min-width: 80px !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.8rem !important;
+        min-height: auto !important;
+        min-width: auto !important;
         flex: 1 !important;
     }
 
     .tab-icon {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.25rem !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 0.2rem !important;
     }
 
     .tab-name {
-        font-size: 0.75rem !important;
+        font-size: 0.7rem !important;
     }
 
     /* 섹션 제목 */
@@ -166,37 +166,37 @@ body {
 
     /* 갤러리/그리드 아이템 */
     .gallery-item, .gallery-card {
-        padding: 1rem !important;
-        min-height: 44px;
+        padding: 0.875rem !important;
+        min-height: auto !important;
     }
 
     .gallery-item-title {
-        font-size: 1rem !important;
+        font-size: 0.95rem !important;
     }
 
     .gallery-item-desc {
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
         line-height: 1.5 !important;
     }
 
     .gallery-item-icon {
-        font-size: 2rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 0.4rem !important;
     }
 
     /* 그리드 레이아웃 - 모바일에서 1열 */
     .gallery-grid, .features-grid {
         grid-template-columns: 1fr !important;
-        gap: 1rem !important;
+        gap: 0.875rem !important;
         padding: 0 1rem !important;
     }
 
     /* 버튼 최적화 */
     button, .btn, .cta-button {
-        min-height: 44px !important;
-        padding: 0.75rem 1.5rem !important;
-        font-size: 1rem !important;
-        border-radius: 8px !important;
+        min-height: auto !important;
+        padding: 0.625rem 1.25rem !important;
+        font-size: 0.9rem !important;
+        border-radius: 6px !important;
     }
 
     /* 모달 최적화 */
@@ -619,13 +619,13 @@ body {
     }
 
     #bookmark-toggle {
-        bottom: 20px !important;
-        right: 20px !important;
-        width: 56px !important;
-        height: 56px !important;
-        font-size: 1.5rem !important;
+        bottom: 16px !important;
+        right: 16px !important;
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 1.3rem !important;
         z-index: 999 !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
     }
 
     /* 북마크 패널 내용 스타일 */
