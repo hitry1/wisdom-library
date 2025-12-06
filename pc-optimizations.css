@@ -1,0 +1,332 @@
+/* ===================================
+   PC 심플 디자인 최적화
+   ================================== */
+
+/* PC 화면 (769px 이상) */
+@media screen and (min-width: 769px) {
+    /* 네비게이션 탭 최적화 */
+    .nav-tab {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        gap: 0.4rem;
+    }
+
+    .tab-icon {
+        font-size: 1.2rem;
+    }
+
+    .tab-name {
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    /* 갤러리 아이콘 축소 */
+    .gallery-item-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* 배지 심플하게 */
+    .gallery-badge,
+    .character-badge,
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        font-weight: 600;
+    }
+
+    .character-badge {
+        font-size: 2.5rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* 버튼 최적화 */
+    button,
+    .btn,
+    .cta-button {
+        padding: 0.65rem 1.4rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        border-radius: 10px;
+    }
+
+    /* 섹션 제목 최적화 */
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    /* 갤러리 카드 최적화 */
+    .gallery-item,
+    .gallery-card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .gallery-item-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+    }
+
+    .gallery-item-desc {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* 인용구 카드 최적화 */
+    .quote-card,
+    .quote-card-academic {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+
+    .quote-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .quote-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
+
+    .quote-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .quote-source {
+        font-size: 0.85rem;
+        margin-top: 1rem;
+    }
+
+    /* 모달 최적화 */
+    .modal,
+    .game-modal {
+        border-radius: 20px;
+        padding: 0;
+    }
+
+    .modal-header,
+    .game-modal-header {
+        padding: 1.25rem;
+        font-size: 1.4rem;
+    }
+
+    .modal-content,
+    .game-modal-body {
+        padding: 1.5rem;
+    }
+
+    .close-button,
+    .game-modal-close {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    /* Hero 섹션 최적화 */
+    .hero-title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-meta {
+        font-size: 0.9rem;
+        gap: 1rem;
+    }
+
+    /* 브랜드 배너 최적화 */
+    .brand-tagline {
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .brand-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .brand-description {
+        font-size: 0.95rem;
+    }
+
+    /* 섹션 여백 최적화 */
+    .section {
+        padding: 3.5rem 2rem;
+    }
+
+    /* 컨테이너 최적화 */
+    .container {
+        padding: 0 2rem;
+    }
+
+    /* 그리드 간격 최적화 */
+    .gallery-grid,
+    .quotes-grid,
+    .features-grid {
+        gap: 1.5rem;
+    }
+
+    /* 일화 아이템 최적화 */
+    .anecdote-item {
+        padding: 1.5rem;
+        border-radius: 16px;
+        margin-bottom: 1.25rem;
+    }
+
+    .anecdote-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
+
+    .anecdote-content {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* 교수님 프로필 최적화 */
+    .professor-profile-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+
+    .professor-quote-bubble {
+        padding: 1.5rem;
+        border-radius: 18px;
+    }
+
+    .professor-main-quote {
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    /* 북마크 패널 최적화 */
+    #bookmark-panel {
+        width: 380px;
+        padding: 1.5rem;
+    }
+
+    #bookmark-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+        bottom: 30px;
+        right: 30px;
+    }
+
+    .scroll-to-top {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+        bottom: 90px;
+        right: 30px;
+    }
+
+    /* 참고문헌 섹션 최적화 */
+    .reference-list {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .ref-category-title {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    /* 입력 필드 최적화 */
+    input,
+    textarea {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        border-radius: 10px;
+    }
+
+    /* 테이블 최적화 */
+    table {
+        font-size: 0.9rem;
+    }
+
+    th {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    td {
+        padding: 0.65rem;
+    }
+
+    /* 플로팅 버튼 호버 효과 */
+    #bookmark-toggle:hover,
+    .scroll-to-top:hover {
+        transform: scale(1.08);
+    }
+
+    /* 카드 호버 효과 축소 */
+    .gallery-item:hover,
+    .quote-card:hover {
+        transform: translateY(-6px);
+    }
+
+    /* 아이콘 호버 효과 */
+    .gallery-item:hover .gallery-item-icon {
+        transform: scale(1.08) rotate(3deg);
+    }
+}
+
+/* 대형 화면 (1400px 이상) */
+@media screen and (min-width: 1400px) {
+    .container {
+        max-width: 1300px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+    }
+
+    .gallery-grid {
+        gap: 2rem;
+    }
+}
+
+/* 중형 화면 (992px - 1199px) */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .section {
+        padding: 3rem 1.5rem;
+    }
+
+    .gallery-item-icon {
+        font-size: 1.8rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
