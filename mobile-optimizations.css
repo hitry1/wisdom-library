@@ -120,10 +120,24 @@ body {
         text-align: center !important;
     }
 
-    /* 브랜드 배너 간격 조정 */
+    /* 브랜드 배너 간격 조정 - 심플하게 */
     .brand-concept-banner {
         margin-top: 0 !important;
-        padding: 2rem 1rem !important;
+        padding: 1.25rem 0.75rem !important;
+    }
+
+    .brand-tagline {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    .brand-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+
+    .brand-description {
+        font-size: 0.75rem !important;
     }
 }
 
@@ -146,24 +160,25 @@ body {
     }
 
     .character-badge {
-        font-size: 2rem !important;
-        margin-bottom: 0.4rem !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 0.3rem !important;
+        padding: 0.25rem 0.5rem !important;
     }
 
     .hero-title {
-        font-size: 1.6rem !important;
-        margin-bottom: 0.75rem !important;
+        font-size: 1.4rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     .hero-subtitle {
-        font-size: 0.95rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 0.85rem !important;
+        margin-bottom: 0.75rem !important;
     }
 
     .hero-meta {
-        font-size: 0.8rem !important;
+        font-size: 0.75rem !important;
         flex-wrap: wrap !important;
-        gap: 0.5rem !important;
+        gap: 0.4rem !important;
     }
 
     .meta-divider {
@@ -187,65 +202,79 @@ body {
     }
 
     .nav-tab {
-        padding: 0.5rem 0.75rem !important;
-        font-size: 0.8rem !important;
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.75rem !important;
         min-height: auto !important;
         min-width: auto !important;
         flex: 1 !important;
+        gap: 0.2rem !important;
     }
 
     .tab-icon {
-        font-size: 1.2rem !important;
-        margin-bottom: 0.2rem !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.1rem !important;
     }
 
     .tab-name {
-        font-size: 0.7rem !important;
+        font-size: 0.65rem !important;
+        font-weight: 500 !important;
     }
 
     /* 섹션 제목 */
     .section-title {
-        font-size: 1.5rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 1.3rem !important;
+        margin-bottom: 0.75rem !important;
+        font-weight: 600 !important;
     }
 
     .section-subtitle {
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
     }
 
     /* 갤러리/그리드 아이템 */
     .gallery-item, .gallery-card {
-        padding: 0.875rem !important;
+        padding: 0.75rem !important;
         min-height: auto !important;
+        border-radius: 12px !important;
     }
 
     .gallery-item-title {
-        font-size: 0.95rem !important;
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
     }
 
     .gallery-item-desc {
-        font-size: 0.8rem !important;
-        line-height: 1.5 !important;
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
     }
 
     .gallery-item-icon {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.4rem !important;
+        font-size: 1.3rem !important;
+        margin-bottom: 0.3rem !important;
     }
 
     /* 그리드 레이아웃 - 모바일에서 1열 */
     .gallery-grid, .features-grid {
         grid-template-columns: 1fr !important;
-        gap: 0.875rem !important;
+        gap: 0.75rem !important;
         padding: 0 1rem !important;
     }
 
-    /* 버튼 최적화 */
+    /* 버튼 최적화 - 더 심플하게 */
     button, .btn, .cta-button {
         min-height: auto !important;
-        padding: 0.625rem 1.25rem !important;
-        font-size: 0.9rem !important;
-        border-radius: 6px !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+        border-radius: 8px !important;
+        font-weight: 500 !important;
+    }
+
+    /* 배지 심플하게 */
+    .gallery-badge, .badge {
+        font-size: 0.65rem !important;
+        padding: 0.2rem 0.5rem !important;
+        border-radius: 4px !important;
+        font-weight: 600 !important;
     }
 
     /* 모달 최적화 */
@@ -255,21 +284,22 @@ body {
         max-height: 90vh !important;
         margin: 5vh auto !important;
         overflow-y: auto !important;
+        border-radius: 16px !important;
     }
 
     .modal-content, .game-modal-body {
-        padding: 1rem !important;
+        padding: 0.875rem !important;
     }
 
     .modal-header, .game-modal-header {
-        padding: 1rem !important;
-        font-size: 1.2rem !important;
+        padding: 0.875rem !important;
+        font-size: 1.1rem !important;
     }
 
     .close-button, .game-modal-close {
-        width: 44px !important;
-        height: 44px !important;
-        font-size: 1.5rem !important;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.3rem !important;
         right: 0.5rem !important;
         top: 0.5rem !important;
     }
@@ -300,10 +330,16 @@ body {
         min-height: 44px !important;
     }
 
-    /* 카드 레이아웃 */
+    /* 카드 레이아웃 - 심플하게 */
     .card, .quote-card {
-        padding: 1rem !important;
-        margin-bottom: 1rem !important;
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        border-radius: 12px !important;
+    }
+
+    .quote-card-academic {
+        padding: 0.875rem !important;
+        border-radius: 12px !important;
     }
 
     /* 이미지 최적화 */
@@ -343,18 +379,19 @@ body {
 
 /* 모든 모바일 기기 공통 */
 @media screen and (max-width: 768px) {
-    /* 여백 최적화 */
+    /* 여백 최적화 - 더 심플하게 */
     .section {
-        padding: 2rem 1rem !important;
+        padding: 1.5rem 0.75rem !important;
     }
 
     .container {
-        padding: 0 1rem !important;
+        padding: 0 0.75rem !important;
     }
 
     /* 텍스트 가독성 */
     p {
-        line-height: 1.7 !important;
+        line-height: 1.6 !important;
+        font-size: 0.9rem !important;
     }
 
     /* 네비게이션 개선 */
