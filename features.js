@@ -129,18 +129,21 @@ class BookmarkManager {
             bookmarkBtn.title = isBookmarked ? '북마크 제거' : '북마크 추가';
             bookmarkBtn.style.cssText = `
                 position: absolute;
-                top: 1rem;
-                right: 1rem;
-                background: rgba(255, 255, 255, 0.9);
+                top: 0.5rem;
+                right: 0.5rem;
+                background: rgba(255, 255, 255, 0.95);
                 border: none;
                 border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
+                width: 28px;
+                height: 28px;
+                font-size: 1rem;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 z-index: 10;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+                display: flex;
+                align-items: center;
+                justify-content: center;
             `;
             
             bookmarkBtn.addEventListener('click', (e) => {
@@ -173,13 +176,13 @@ class BookmarkManager {
             
             // 호버 효과
             bookmarkBtn.addEventListener('mouseenter', () => {
-                bookmarkBtn.style.transform = 'scale(1.1)';
-                bookmarkBtn.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
+                bookmarkBtn.style.transform = 'scale(1.15)';
+                bookmarkBtn.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.2)';
             });
-            
+
             bookmarkBtn.addEventListener('mouseleave', () => {
                 bookmarkBtn.style.transform = 'scale(1)';
-                bookmarkBtn.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                bookmarkBtn.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.12)';
             });
             
             // 카드를 상대 위치로 설정
@@ -193,18 +196,21 @@ class BookmarkManager {
             copyBtn.title = '명언 복사';
             copyBtn.style.cssText = `
                 position: absolute;
-                top: 1rem;
-                right: 4rem;
-                background: rgba(255, 255, 255, 0.9);
+                top: 0.5rem;
+                right: 2.5rem;
+                background: rgba(255, 255, 255, 0.95);
                 border: none;
                 border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                font-size: 1.3rem;
+                width: 28px;
+                height: 28px;
+                font-size: 0.95rem;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 z-index: 10;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+                display: flex;
+                align-items: center;
+                justify-content: center;
             `;
 
             copyBtn.addEventListener('click', (e) => {
@@ -239,13 +245,13 @@ class BookmarkManager {
 
             // 호버 효과
             copyBtn.addEventListener('mouseenter', () => {
-                copyBtn.style.transform = 'scale(1.1)';
-                copyBtn.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
+                copyBtn.style.transform = 'scale(1.15)';
+                copyBtn.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.2)';
             });
 
             copyBtn.addEventListener('mouseleave', () => {
                 copyBtn.style.transform = 'scale(1)';
-                copyBtn.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                copyBtn.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.12)';
             });
 
             card.appendChild(copyBtn);
