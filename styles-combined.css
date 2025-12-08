@@ -55,6 +55,10 @@ body {
     color: var(--text-primary);
     line-height: 1.7;
     overflow-x: hidden;
+    /* 부드러운 스크롤 최적화 */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
 }
 
 .hidden {
@@ -65,6 +69,9 @@ body {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 2rem;
+    /* 스크롤 성능 최적화 */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* ===== Navigation Bar ===== */
@@ -589,6 +596,38 @@ body {
 /* ===== Smooth Scrolling ===== */
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* 네비게이션 높이만큼 여백 */
+}
+
+/* ===== 부드러운 스크롤바 스타일 (PC) ===== */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-left: 1px solid #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8B2635 0%, #a83545 100%);
+    border-radius: 6px;
+    border: 2px solid #f5f5f5;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6b1d29 0%, #8B2635 100%);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, #5a1822 0%, #6b1d29 100%);
+}
+
+/* Firefox 스크롤바 */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8B2635 #f5f5f5;
 }
 
 /* ===== Print Optimization ===== */
@@ -3291,11 +3330,84 @@ html {
 .hero-modern,
 .quote-card,
 .gallery-item,
-.nav-tab {
+.nav-tab,
+.section {
     will-change: transform;
     transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+/* 부드러운 섹션 전환 애니메이션 */
+.section {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) translateZ(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+}
+
+/* 스크롤 시 부드러운 요소 전환 */
+.quote-card,
+.gallery-item,
+.anecdote-item {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 성능 최적화 - 애니메이션 중 repaint 최소화 */
+@media (prefers-reduced-motion: no-preference) {
+    * {
+        scroll-behavior: smooth;
+    }
+}
+
+/* 애니메이션 줄이기 선호 사용자 지원 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* PC 전용 부드러운 스크롤 최적화 */
+@media screen and (min-width: 1024px) {
+    /* 스크롤 성능 향상 */
+    body {
+        overflow-y: scroll;
+        scroll-snap-type: y proximity;
+    }
+    
+    .section {
+        scroll-margin-top: 80px;
+    }
+    
+    /* 호버 시 부드러운 효과 */
+    .quote-card:hover,
+    .gallery-item:hover {
+        transform: translateY(-8px) translateZ(0);
+    }
+    
+    /* 스크롤 시 부드러운 페이드인 */
+    .quote-card,
+    .gallery-item,
+    .anecdote-item {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
 }
 
 @media screen and (max-width: 768px) {

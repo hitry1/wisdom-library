@@ -233,24 +233,41 @@ body {
 
     /* 갤러리/그리드 아이템 */
     .gallery-item, .gallery-card {
-        padding: 0.75rem !important;
+        padding: 1rem !important;
+        padding-top: 2.5rem !important;
         min-height: auto !important;
         border-radius: 12px !important;
+        position: relative !important;
     }
 
     .gallery-item-title {
         font-size: 0.9rem !important;
         font-weight: 600 !important;
+        margin-top: 0.5rem !important;
     }
 
     .gallery-item-desc {
         font-size: 0.75rem !important;
         line-height: 1.4 !important;
+        margin-top: 0.3rem !important;
     }
 
     .gallery-item-icon {
         font-size: 1.3rem !important;
         margin-bottom: 0.3rem !important;
+        display: block !important;
+    }
+
+    /* 갤러리 아이템 이미지 영역 */
+    .gallery-item-image {
+        position: relative !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* 갤러리 아이템 정보 영역 */
+    .gallery-item-info {
+        position: relative !important;
+        z-index: 1 !important;
     }
 
     /* 그리드 레이아웃 - 모바일에서 1열 */
@@ -269,12 +286,37 @@ body {
         font-weight: 500 !important;
     }
 
-    /* 배지 심플하게 */
+    /* 배지 심플하게 - 위치 조정 */
     .gallery-badge, .badge {
         font-size: 0.65rem !important;
         padding: 0.2rem 0.5rem !important;
         border-radius: 4px !important;
         font-weight: 600 !important;
+        position: absolute !important;
+        top: 8px !important;
+        right: 8px !important;
+        z-index: 2 !important;
+    }
+
+    /* 갤러리 아이템 위치 조정 */
+    .gallery-item {
+        position: relative !important;
+    }
+
+    /* 카드 아이콘이 텍스트를 가리지 않도록 */
+    .quote-icon, .gallery-item-icon {
+        margin-bottom: 0.5rem !important;
+        display: block !important;
+    }
+
+    /* 토스트 알림이 콘텐츠를 가리지 않도록 */
+    .toast, .notification, [class*="toast"], [class*="snackbar"] {
+        bottom: 60px !important;
+        margin: 0 auto !important;
+        max-width: calc(100% - 32px) !important;
+        left: 16px !important;
+        right: 16px !important;
+        opacity: 0.95 !important;
     }
 
     /* 모달 최적화 */
@@ -332,14 +374,39 @@ body {
 
     /* 카드 레이아웃 - 심플하게 */
     .card, .quote-card {
-        padding: 0.75rem !important;
+        padding: 1rem !important;
         margin-bottom: 0.75rem !important;
         border-radius: 12px !important;
+        position: relative !important;
+        overflow: visible !important;
     }
 
     .quote-card-academic {
-        padding: 0.875rem !important;
+        padding: 1rem !important;
         border-radius: 12px !important;
+        position: relative !important;
+    }
+
+    /* 카드 내부 텍스트가 아이콘에 가려지지 않도록 */
+    .quote-card .quote-text,
+    .quote-card-academic p {
+        position: relative !important;
+        z-index: 1 !important;
+        margin-top: 0.5rem !important;
+    }
+
+    /* 북마크 버튼이 카드 위에 있을 때 */
+    .quote-card button,
+    .card button {
+        position: absolute !important;
+        top: 8px !important;
+        right: 8px !important;
+        z-index: 3 !important;
+        background: white !important;
+        border-radius: 50% !important;
+        width: 32px !important;
+        height: 32px !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
     }
 
     /* 이미지 최적화 */
@@ -705,33 +772,46 @@ body {
     }
 
     #bookmark-toggle {
-        bottom: 20px !important;
-        right: 20px !important;
-        width: 36px !important;
-        height: 36px !important;
-        font-size: 0.95rem !important;
+        bottom: 80px !important;
+        right: 16px !important;
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1rem !important;
         z-index: 999 !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25) !important;
         border-radius: 50% !important;
         padding: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        opacity: 0.95 !important;
     }
 
-    /* 맨 위로 스크롤 버튼 작은 동그라미 */
+    /* 맨 위로 스크롤 버튼 */
     .scroll-to-top {
-        width: 36px !important;
-        height: 36px !important;
-        font-size: 0.95rem !important;
-        bottom: 65px !important;
-        right: 20px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1rem !important;
+        bottom: 130px !important;
+        right: 16px !important;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25) !important;
         border-radius: 50% !important;
         padding: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        opacity: 0.95 !important;
+    }
+
+    /* 전체화면 버튼이나 기타 플로팅 버튼 */
+    button[style*="position: fixed"],
+    .floating-btn,
+    .fullscreen-btn {
+        width: 44px !important;
+        height: 44px !important;
+        bottom: 180px !important;
+        right: 16px !important;
+        opacity: 0.9 !important;
     }
 
     /* 북마크 패널 내용 스타일 */
