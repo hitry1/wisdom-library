@@ -818,7 +818,8 @@ body {
     }
 
     /* 맨 위로 스크롤 버튼 - 작게 */
-    .scroll-to-top {
+    .scroll-to-top,
+    .back-to-top {
         width: 36px !important;
         height: 36px !important;
         font-size: 0.85rem !important;
@@ -831,6 +832,10 @@ body {
         align-items: center !important;
         justify-content: center !important;
         opacity: 0.9 !important;
+        min-width: 36px !important;
+        max-width: 36px !important;
+        min-height: 36px !important;
+        max-height: 36px !important;
     }
 
     /* 전체화면 버튼 - 작게 */
