@@ -160,9 +160,19 @@ body {
     }
 
     .character-badge {
-        font-size: 1.5rem !important;
+        font-size: 1.3rem !important;
         margin-bottom: 0.3rem !important;
-        padding: 0.25rem 0.5rem !important;
+        padding: 0.2rem 0.4rem !important;
+    }
+
+    /* 상단 우측 검색 버튼 더 작게 */
+    header .search-button,
+    nav .search-button,
+    .header-search-btn {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
     }
 
     .hero-title {
@@ -233,8 +243,8 @@ body {
 
     /* 갤러리/그리드 아이템 */
     .gallery-item, .gallery-card {
-        padding: 1rem !important;
-        padding-top: 2.5rem !important;
+        padding: 0.85rem !important;
+        padding-top: 2.2rem !important;
         min-height: auto !important;
         border-radius: 12px !important;
         position: relative !important;
@@ -248,13 +258,13 @@ body {
 
     .gallery-item-desc {
         font-size: 0.75rem !important;
-        line-height: 1.4 !important;
+        line-height: 1.5 !important;
         margin-top: 0.3rem !important;
     }
 
     .gallery-item-icon {
-        font-size: 1.3rem !important;
-        margin-bottom: 0.3rem !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 0.4rem !important;
         display: block !important;
     }
 
@@ -309,14 +319,15 @@ body {
         display: block !important;
     }
 
-    /* 토스트 알림이 콘텐츠를 가리지 않도록 */
+    /* 토스트 알림이 플로팅 버튼을 가리지 않도록 */
     .toast, .notification, [class*="toast"], [class*="snackbar"] {
-        bottom: 60px !important;
+        bottom: 75px !important;
         margin: 0 auto !important;
         max-width: calc(100% - 32px) !important;
         left: 16px !important;
         right: 16px !important;
         opacity: 0.95 !important;
+        z-index: 998 !important;
     }
 
     /* 모달 최적화 */
@@ -374,7 +385,8 @@ body {
 
     /* 카드 레이아웃 - 심플하게 */
     .card, .quote-card {
-        padding: 1rem !important;
+        padding: 0.85rem !important;
+        padding-top: 2.5rem !important;
         margin-bottom: 0.75rem !important;
         border-radius: 12px !important;
         position: relative !important;
@@ -382,7 +394,8 @@ body {
     }
 
     .quote-card-academic {
-        padding: 1rem !important;
+        padding: 0.85rem !important;
+        padding-top: 2.5rem !important;
         border-radius: 12px !important;
         position: relative !important;
     }
@@ -392,10 +405,11 @@ body {
     .quote-card-academic p {
         position: relative !important;
         z-index: 1 !important;
-        margin-top: 0.5rem !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
     }
 
-    /* 북마크 버튼이 카드 위에 있을 때 */
+    /* 북마크 버튼이 카드 위에 있을 때 - 더 작게 */
     .quote-card button,
     .card button {
         position: absolute !important;
@@ -404,9 +418,13 @@ body {
         z-index: 3 !important;
         background: white !important;
         border-radius: 50% !important;
-        width: 32px !important;
-        height: 32px !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.8rem !important;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     /* 이미지 최적화 */
@@ -509,6 +527,18 @@ body {
     .search-input {
         font-size: 16px !important;
         padding: 0.75rem 1rem !important;
+    }
+
+    /* 검색 버튼 - 작게 */
+    .search-button,
+    button[onclick*="search"],
+    button[class*="search"] {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+        font-size: 1rem !important;
+        padding: 0 !important;
     }
 
     /* 탭 네비게이션 */
@@ -787,31 +817,38 @@ body {
         opacity: 0.95 !important;
     }
 
-    /* 맨 위로 스크롤 버튼 */
+    /* 맨 위로 스크롤 버튼 - 작게 */
     .scroll-to-top {
-        width: 44px !important;
-        height: 44px !important;
-        font-size: 1rem !important;
-        bottom: 130px !important;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.85rem !important;
+        bottom: 140px !important;
         right: 16px !important;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
         border-radius: 50% !important;
         padding: 0 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        opacity: 0.95 !important;
+        opacity: 0.9 !important;
     }
 
-    /* 전체화면 버튼이나 기타 플로팅 버튼 */
+    /* 전체화면 버튼 - 작게 */
     button[style*="position: fixed"],
     .floating-btn,
     .fullscreen-btn {
-        width: 44px !important;
-        height: 44px !important;
-        bottom: 180px !important;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.9rem !important;
+        bottom: 185px !important;
         right: 16px !important;
-        opacity: 0.9 !important;
+        opacity: 0.85 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     /* 북마크 패널 내용 스타일 */
